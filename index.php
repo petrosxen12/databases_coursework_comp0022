@@ -10,9 +10,6 @@
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
 
-</head>
-
-<body>
 
 <style>
 .jumbotron {
@@ -49,6 +46,10 @@ footer p {
   margin-bottom: .25rem;
 }
   </style>
+</head>
+
+<body>
+
 
 <div class="collapse bg-dark" id="navbarHeader">
     <div class="container">
