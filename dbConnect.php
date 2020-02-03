@@ -14,7 +14,7 @@
     if ($getResults == FALSE)
         echo (sqlsrv_errors());
 
-    $row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)
+    // $row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)
     
     // while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     //  echo("<h3>");
@@ -22,6 +22,6 @@
     //  echo("</h3>");
     // }
 
-    sqlsrv_free_stmt($getResults);
+    // sqlsrv_free_stmt($getResults);
     
 ?>
