@@ -13,9 +13,10 @@
 </head>
 
 <body>
-  <div style="border:1px solid black;">
+  <!-- <div style="border:1px solid black;"> -->
+    <div>
 
-<table class="table">
+<table class="table table-striped table-md">
   <thead class="black white-text">
     <tr>
       <th scope="col">#</th>
@@ -32,9 +33,11 @@
   while($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)){
     // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
     echo '<tr>';
+    
     echo '<th scope="row">'.$counter++.'</th>
     <td>'.$row['FirstName'].'</td>
     <td>'.$row['LastName'].'</td>';
+
     echo '</tr>';
   }  
 
