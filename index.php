@@ -12,7 +12,7 @@
 <body>
 <?php
   echo "php sucks.";
-<?
+?>
    <h1>hello world.</h1>
   <script src="js/scripts.js"></script>
 </body>
