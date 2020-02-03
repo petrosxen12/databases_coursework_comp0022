@@ -18,7 +18,6 @@
       <th scope="col">#</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
-      <th scope="col">Handle</th>
     </tr>
   </thead>
   <tbody>
@@ -37,7 +36,7 @@
 
   sqlsrv_free_stmt($getResults);  
   ?>
-        </tr>
+  </tr>
   </tbody>
 </table>
 
