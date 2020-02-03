@@ -13,6 +13,7 @@
   <div style="border:1px solid black;">
 <?php
   echo "php sucks.";
+  include "dbConnect.php";
 ?>
 </div>
    <h1>hello world.</h1>
