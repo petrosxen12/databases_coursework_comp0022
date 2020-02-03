@@ -13,8 +13,12 @@
   <div style="border:1px solid black;">
 <?php
   echo "php sucks.";
-  include "dbConnect.php";
+  // include "dbConnect.php";
+  while($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)){
+    echo '<h3>'. $row['LastName'] .'</h3>';
+  }  
 ?>
+
 </div>
    <h1>hello world.</h1>
   <script src="js/scripts.js"></script>
