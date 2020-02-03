@@ -24,22 +24,22 @@
     </tr>
   </thead>
   <tbody>
-  <tr>
+    
   <?php
   $counter=0;
   echo "php sucks.";
   include "dbConnect.php";
   while($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)){
     // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
+    echo '<tr>';
     echo '<th scope="row">'.$counter++.'</th>
     <td>'.$row['FirstName'].'</td>
     <td>'.$row['LastName'].'</td>';
-
+    echo '</tr>';
   }  
 
   sqlsrv_free_stmt($getResults);  
   ?>
-  </tr>
   </tbody>
 </table>
 
