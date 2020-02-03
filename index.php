@@ -11,14 +11,35 @@
 
 <body>
   <div style="border:1px solid black;">
-<?php
+
+<table class="table">
+  <thead class="black white-text">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <?php
+  $counter=0;
   echo "php sucks.";
   include "dbConnect.php";
   while($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)){
-    echo '<h3>'. $row['LastName'] .'</h3>';
+    // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
+    echo '<th scope="row">'.$counter++.'</th>
+    <td>'.$row['FirstName'].'</td>
+    <td>'.$row['LastName'].'</td>';
+
   }  
+
   sqlsrv_free_stmt($getResults);  
-?>
+  ?>
+        </tr>
+  </tbody>
+</table>
 
 </div>
    <h1>hello world.</h1>
