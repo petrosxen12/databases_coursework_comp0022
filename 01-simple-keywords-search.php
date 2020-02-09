@@ -18,7 +18,7 @@
 /**
  * Include the SDK by using the autoloader from Composer.
  */
-require 'C:\composer\vendorautoload.php';
+require 'C:\composer\vendor\autoload.php';
 
 /**
  * Include the configuration values.
@@ -42,7 +42,7 @@ use \DTS\eBaySDK\Finding\Enums;
 $service = new Services\FindingService([
     'credentials' => $config['sandbox']['credentials'],
     'globalId'    => Constants\GlobalIds::US,
-    'authToken'   => $config['sandbox']['authToken'],
+    //'authToken'   => $config['sandbox']['authToken'],
     'siteId'      => Constants\SiteIds::US,
     'httpOptions' => [
         'verify' => false
@@ -53,11 +53,16 @@ $service = new Services\FindingService([
  * Create the request object.
  */
 $request = new Types\FindItemsByKeywordsRequest();
+$item_filter = new Types\ItemFilter();
+$item_filter->name = 'ListingType';
+$item_filter->value[] = 'Auction';
+//$listing_type->value[] = 'AuctionWithBIN';
+$request->itemFilter[] = $item_filter;
 
 /**
  * Assign the keywords.
  */
-$request->keywords = 'Harry Potter';
+$request->keywords = 'camera';
 
 /**
  * Send the request.
