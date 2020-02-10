@@ -182,6 +182,7 @@
                                             <th>ID</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
+                                            <th>Cash</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -194,7 +195,8 @@
                                       
                                           echo '<th scope="row">'.$counter++.'</th>
                                           <td>'.$row['FirstName'].'</td>
-                                          <td>'.$row['LastName'].'</td>';
+                                          <td>'.$row['LastName'].'</td>
+                                          <td>'.$row['Cash'].'</td>';
                                       
                                           echo '</tr>';
                                         }  
