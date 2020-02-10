@@ -20,9 +20,9 @@ return [
     ],
     'production' => [
         'credentials' => [
-            'devId' => 'YOUR_PRODUCTION_DEVID_APPLICATION_KEY',
-            'appId' => 'YOUR_PRODUCTION_APPID_APPLICATION_KEY',
-            'certId' => 'YOUR_PRODUCTION_CERTID_APPLICATION_KEY',
+            'devId' => '10f1c24b-da51-4904-8cd5-fce396ef6b49',
+            'appId' => 'PrashanK-COMP0022-PRD-fca7fae46-7214786b',
+            'certId' => 'PRD-ca7fae46ecc2-3c5d-4320-90d8-c1a5',
         ],
         'authToken' => 'YOUR_PRODUCTION_USER_TOKEN_APPLICATION_KEY',
         'oauthUserToken' => 'YOUR_PRODUCTION_OAUTH_USER_TOKEN',

@@ -42,7 +42,7 @@ use \DTS\eBaySDK\Finding\Enums;
 $service = new Services\FindingService([
     'credentials' => $config['sandbox']['credentials'],
     'globalId'    => Constants\GlobalIds::US,
-    //'authToken'   => $config['sandbox']['authToken'],
+    'authToken'   => $config['sandbox']['authToken'],
     'siteId'      => Constants\SiteIds::US,
     'httpOptions' => [
         'verify' => false
@@ -63,11 +63,16 @@ $request->itemFilter[] = $item_filter;
  * Assign the keywords.
  */
 $request->keywords = 'camera';
+$request->paginationInput = new Types\PaginationInput();
+$request->paginationInput->entriesPerPage = 10;
+$request->paginationInput->pageNumber = 1;
+$request->sortOrder = 'EndTimeSoonest';
 
 /**
  * Send the request.
  */
 $response = $service->findItemsByKeywords($request);
+
 
 /**
  * Output the result of the search.
@@ -83,13 +88,24 @@ if (isset($response->errorMessage)) {
 }
 
 if ($response->ack !== 'Failure') {
-    foreach ($response->searchResult->item as $item) {
-        printf(
-            "(%s) %s: %s %.2f\n",
-            $item->itemId,
-            $item->title,
-            $item->sellingStatus->currentPrice->currencyId,
-            $item->sellingStatus->currentPrice->value
-        );
+    //print($response->searchResult->item[0]);
+    //for ($page = 1; $page <= $response->paginationOutput->totalPages; $page++) {
+    for ($page = 1; $page <= 5; $page++) {
+
+        $request->paginationInput->pageNumber = $page;
+        $response = $service->findItemsByKeywords($request);
+
+        foreach ($response->searchResult->item as $item) {
+            $date = new DateTime();
+            $date->add(new DateInterval($item->sellingStatus->timeLeft));
+            printf(
+                "(%s) [%s] %s: %s %.2f\n",
+                $item->itemId,
+                $date->format('Y-m-d H:i:s'),
+                $item->title,
+                $item->sellingStatus->currentPrice->currencyId,
+                $item->sellingStatus->currentPrice->value
+            );
+        }
     }
 }
