@@ -9,21 +9,16 @@
     <meta name="author" content="" />
     <title>Ebay Admin Dashboard</title>
     <link href="dist/css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
-        crossorigin="anonymous"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a><button
-            class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
-                class="fas fa-bars"></i></button><!-- Navbar Search-->
+        <a class="navbar-brand" href="index.html">Start Bootstrap</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button><!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search"
-                    aria-describedby="basic-addon2" />
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                 </div>
@@ -32,8 +27,7 @@
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                     <div class="dropdown-divider"></div>
@@ -53,47 +47,33 @@
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts"
-                            aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Layouts
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="layout-static.html">Static
                                     Navigation</a><a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Pages
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse"
-                                    data-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">Authentication
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">Authentication
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                    data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav"><a class="nav-link"
-                                            href="login.html">Login</a><a class="nav-link"
-                                            href="register.html">Register</a><a class="nav-link"
-                                            href="password.html">Forgot Password</a></nav>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="login.html">Login</a><a class="nav-link" href="register.html">Register</a><a class="nav-link" href="password.html">Forgot Password</a></nav>
                                 </div>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse"
-                                    data-target="#pagesCollapseError" aria-expanded="false"
-                                    aria-controls="pagesCollapseError">Error
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">Error
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                    data-parent="#sidenavAccordionPages">
+                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="401.html">401
-                                            Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link"
-                                            href="500.html">500 Page</a></nav>
+                                            Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link" href="500.html">500 Page</a></nav>
                                 </div>
                             </nav>
                         </div>
@@ -114,6 +94,15 @@
             </nav>
         </div>
         <div id="layoutSidenav_content">
+            <div class="jumbotron">
+                <h1 class="display-4">Hello, world!</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                </p>
+            </div>
             <main>
                 <div class="container-fluid">
                     <h1 class="mt-4">Ebay Monitoring Dashboard</h1>
@@ -187,21 +176,21 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $counter=0;
+                                        $counter = 0;
                                         require_once "dbConnect.php";
-                                        while($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)){
-                                          // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
-                                          echo '<tr>';
-                                      
-                                          echo '<th scope="row">'.$counter++.'</th>
-                                          <td>'.$row['FirstName'].'</td>
-                                          <td>'.$row['LastName'].'</td>
-                                          <td>'.$row['Cash'].'</td>';
-                                      
-                                          echo '</tr>';
-                                        }  
-                                      
-                                        sqlsrv_free_stmt($getResults);  
+                                        while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+                                            // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
+                                            echo '<tr>';
+
+                                            echo '<th scope="row">' . $counter++ . '</th>
+                                          <td>' . $row['FirstName'] . '</td>
+                                          <td>' . $row['LastName'] . '</td>
+                                          <td>' . $row['Cash'] . '</td>';
+
+                                            echo '</tr>';
+                                        }
+
+                                        sqlsrv_free_stmt($getResults);
                                         ?>
 
                                     </tbody>
@@ -226,8 +215,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="dist/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="dist/assets/demo/chart-area-demo.js"></script>
