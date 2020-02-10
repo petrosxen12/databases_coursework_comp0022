@@ -102,7 +102,7 @@ footer p {
   while($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)){
     // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
     echo '<tr>';
-    
+
     echo '<th scope="row">'.$counter++.'</th>
     <td>'.$row['FirstName'].'</td>
     <td>'.$row['LastName'].'</td>';
@@ -112,6 +112,7 @@ footer p {
 
   sqlsrv_free_stmt($getResults);  
   ?>
+  
   </tbody>
 </table>
 
