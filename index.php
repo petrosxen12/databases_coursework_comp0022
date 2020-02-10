@@ -187,7 +187,6 @@
                                     <tbody>
                                         <?php
                                         $counter=0;
-                                        echo "php sucks.";
                                         include "dbConnect.php";
                                         while($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)){
                                           // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
