@@ -100,6 +100,12 @@
                 <hr class="my-4">
                 <p>You can also view the best time to bid or if a certain listing is being sold at a good price. </p>
                 <p class="lead">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
                     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
                 </p>
             </div>
