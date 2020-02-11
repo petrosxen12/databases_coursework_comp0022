@@ -94,7 +94,7 @@
             </nav>
         </div>
         <div id="layoutSidenav_content">
-            <div class="jumbotron" id="top_jumbotron">
+            <div class="jumbotron top_jumbotron" id="top_jumbotron">
                 <h1 class="display-4">Monitor prices of cameras</h1>
                 <p class="lead">This web-app offers you the capability to monitor price changes and historical data of cameras</p>
                 <hr class="my-4">

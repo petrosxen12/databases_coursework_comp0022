@@ -479,7 +479,7 @@ mark,
   height: auto;
 }
 
-#top_jumbotron {
+.jumbotron .top_jumbotron {
   background-image: url(https://images.pexels.com/photos/919436/pexels-photo-919436.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
   background-size: cover;
 }
