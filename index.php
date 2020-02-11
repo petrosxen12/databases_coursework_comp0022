@@ -117,6 +117,7 @@
                         <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="dist/assets/img/error-404-monochrome.svg" alt="Card image cap">
                             <div class="card-body">
+                                <h5 class="card-title">Auction</h5>
                                 <p class="card-text">Auction</p>
                             </div>
                         </div>
@@ -125,6 +126,7 @@
                         <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="dist/assets/img/error-404-monochrome.svg" alt="Card image cap">
                             <div class="card-body">
+                                <h5 class="card-title">Buy it now</h5>
                                 <p class="card-text">Buy now</p>
                             </div>
                         </div>
@@ -133,6 +135,7 @@
                         <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="dist/assets/img/error-404-monochrome.svg" alt="Card image cap">
                             <div class="card-body">
+                                <h5 class="card-title">Auction</h5>
                                 <p class="card-text">Auction</p>
                             </div>
                         </div>
