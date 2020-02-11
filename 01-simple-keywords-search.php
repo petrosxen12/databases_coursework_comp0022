@@ -41,9 +41,9 @@ use \DTS\eBaySDK\Finding\Enums;
  */
 $service = new Services\FindingService([
     'credentials' => $config['sandbox']['credentials'],
-    'globalId'    => Constants\GlobalIds::US,
+    'globalId'    => Constants\GlobalIds::GB,
     'authToken'   => $config['sandbox']['authToken'],
-    'siteId'      => Constants\SiteIds::US,
+    'siteId'      => Constants\SiteIds::GB,
     'httpOptions' => [
         'verify' => false
     ] 
@@ -62,7 +62,7 @@ $request->itemFilter[] = $item_filter;
 /**
  * Assign the keywords.
  */
-$request->keywords = 'camera';
+$request->keywords = 'dslr camera';
 $request->paginationInput = new Types\PaginationInput();
 $request->paginationInput->entriesPerPage = 10;
 $request->paginationInput->pageNumber = 1;
