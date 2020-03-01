@@ -1,3 +1,7 @@
+<?php
+require_once "dbConnect.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -220,7 +224,6 @@
                                     <tbody>
                                         <?php
                                         $counter = 0;
-                                        require_once "dbConnect.php";
                                         while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
                                             // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
                                             echo '<tr>';
