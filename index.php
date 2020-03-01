@@ -224,6 +224,8 @@ require_once "dbConnect.php";
                                     <tbody>
                                         <?php
                                         $counter = 0;
+                                        $tsql = "SELECT TOP (1000) * FROM [dbo].[Persons]";
+                                        $getResults = sqlsrv_query($conn, $tsql);
                                         while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
                                             // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
                                             echo '<tr>';
