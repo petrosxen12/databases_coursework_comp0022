@@ -2,7 +2,7 @@
 require_once "dbConnect.php";
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-
+    header("location: /");
     // if (getenv("env") == true) {
     //     header("location: /");
     // }
