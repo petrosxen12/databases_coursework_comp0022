@@ -2,10 +2,16 @@
 require_once "dbConnect.php";
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: /");
+
+    // if (getenv("env") == true) {
+    //     header("location: /");
+    // }
+
     exit;
 } else {
-    header("location: /dist/login.php");
+    if (getenv("env") == true) {
+        header("location: dist/login.php");
+    }
 }
 
 ?>
@@ -43,7 +49,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="login.html">Logout</a>
+                    <a class="dropdown-item" href="logout.php">Logout</a>
                 </div>
             </li>
         </ul>
