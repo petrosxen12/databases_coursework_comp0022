@@ -6,6 +6,7 @@ session_start();
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     if (getenv("env") == true) {
         header("location: /");
+        exit;
     }
     header("location: ../index.php");
     exit;
