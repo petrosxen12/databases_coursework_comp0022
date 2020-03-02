@@ -217,21 +217,22 @@ require_once "dbConnect.php";
                                         <tr>
                                             <th>ID</th>
                                             <th>Username</th>
+                                            <th>Email</th>
                                             <th>Password</th>
                                             <!-- <th>Cash</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $counter = 0;
                                         $tsql = "SELECT * FROM users";
                                         $getResults = mysqli_query($conn, $tsql);
                                         while ($row = mysqli_fetch_array($getResults)) {
                                             // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
                                             echo '<tr>';
 
-                                            echo '<th scope="row">' . $counter++ . '</th>
-                                          <td>' . $row['username'] . '</td>
+                                            echo '<th scope="row">' . $row['id'] . '</th>
+                                          <td>' . $row['username'] . '</td> 
+                                          <td>' . $row['email'] . '</td>
                                           <td>' . $row['password'] . '</td>';
 
                                             echo '</tr>';
