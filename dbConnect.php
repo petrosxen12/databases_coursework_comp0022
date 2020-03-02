@@ -1,17 +1,15 @@
 <?php
+$host = 'ebaytool.mysql.database.azure.com';
+$username = 'xen@ebaytool';
+$pass = 'malakas123!@';
+$db_name = 'users';
 
-$serverName = "dbserverxen.database.windows.net"; // update me
-$connectionOptions = array(
-    "Database" => "dbTesting", // update me
-    "Uid" => "xen@dbserverxen", // update me
-    "PWD" => "malakas123!@" // update me
-);
 //Establishes the connection
-$conn = sqlsrv_connect($serverName, $connectionOptions);
-if ($conn === false) {
-    die(print_r(sqlsrv_errors(), true));
+$conn = mysqli_init();
+mysqli_real_connect($conn, $host, $username, $pass, $db_name, 3306);
+if (mysqli_connect_errno($conn)) {
+    die('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
-    
     /*
     $tsql= "SELECT TOP (1000) * FROM [dbo].[Persons]";
     $getResults= sqlsrv_query($conn, $tsql);

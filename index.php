@@ -225,8 +225,8 @@ require_once "dbConnect.php";
                                         <?php
                                         $counter = 0;
                                         $tsql = "SELECT TOP (1000) * FROM [dbo].[Persons]";
-                                        $getResults = sqlsrv_query($conn, $tsql);
-                                        while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+                                        $getResults = mysqli_query($conn, $tsql);
+                                        while ($row = mysqli_fetch_array($getResults)) {
                                             // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
                                             echo '<tr>';
 
@@ -238,7 +238,7 @@ require_once "dbConnect.php";
                                             echo '</tr>';
                                         }
 
-                                        sqlsrv_free_stmt($getResults);
+                                        mysqli_free_result($getResults);
                                         ?>
 
                                     </tbody>
