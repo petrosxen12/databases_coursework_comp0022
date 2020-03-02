@@ -224,7 +224,7 @@ require_once "dbConnect.php";
                                     <tbody>
                                         <?php
                                         $counter = 0;
-                                        $tsql = "SELECT TOP (1000) * FROM users";
+                                        $tsql = "SELECT * FROM users";
                                         $getResults = mysqli_query($conn, $tsql);
                                         while ($row = mysqli_fetch_array($getResults)) {
                                             // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
