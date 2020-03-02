@@ -9,5 +9,9 @@ $_SESSION = array();
 session_destroy();
 
 // Redirect to login page
+if (getenv("env") == true) {
+    header("location: dist/logout.php");
+    exit;
+}
 header("location: /cwrepo/dist/login.php");
 exit;
