@@ -13,5 +13,6 @@ if (getenv("env") == true) {
     header("location: dist/logout.php");
     exit;
 }
+
 header("location: /cwrepo/dist/login.php");
 exit;
