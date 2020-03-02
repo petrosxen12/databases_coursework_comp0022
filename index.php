@@ -216,24 +216,23 @@ require_once "dbConnect.php";
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Cash</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <!-- <th>Cash</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $counter = 0;
-                                        $tsql = "SELECT TOP (1000) * FROM [dbo].[Persons]";
+                                        $tsql = "SELECT TOP (1000) * FROM users";
                                         $getResults = mysqli_query($conn, $tsql);
                                         while ($row = mysqli_fetch_array($getResults)) {
                                             // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
                                             echo '<tr>';
 
                                             echo '<th scope="row">' . $counter++ . '</th>
-                                          <td>' . $row['FirstName'] . '</td>
-                                          <td>' . $row['LastName'] . '</td>
-                                          <td>' . $row['Cash'] . '</td>';
+                                          <td>' . $row['username'] . '</td>
+                                          <td>' . $row['password'] . '</td>';
 
                                             echo '</tr>';
                                         }
