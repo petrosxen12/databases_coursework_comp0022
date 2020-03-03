@@ -41,76 +41,40 @@ use \DTS\eBaySDK\Trading\Enums;
  */
 $service = new Services\TradingService([
     'credentials' => $config['sandbox']['credentials'],
-    'globalId'    => Constants\GlobalIds::US,
-    'authToken'   => $config['sandbox']['authToken'],
-    'siteId'      => Constants\SiteIds::US,
+    'globalId'    => Constants\GlobalIds::GB,
+    'siteId'      => Constants\SiteIds::GB,
     'httpOptions' => [
         'verify' => false
     ] 
 ]);
 
-/**
- * Create the request object.
- */
-$request = new Types\GetAllBiddersRequestType();
-// $item_filter = new Types\ItemFilter();
-// $item_filter->name = 'ListingType';
-// $item_filter->value[] = 'Auction';
-//$listing_type->value[] = 'AuctionWithBIN';
-//$request->itemFilter[] = $item_filter;
+$request = new Types\GeteBayOfficialTimeRequestType();
 
 /**
- * Assign the keywords.
+ * An user token is required when using the Trading service.
  */
-$request->ItemID = '264625325843';
-$request->CallMode = 'ViewAll';
-$request->IncludeBiddingSummary = true;
-// $request->paginationInput = new Types\PaginationInput();
-// $request->paginationInput->entriesPerPage = 10;
-// $request->paginationInput->pageNumber = 1;
-// $request->sortOrder = 'EndTimeSoonest';
+$request->RequesterCredentials = new Types\CustomSecurityHeaderType();
+$request->RequesterCredentials->eBayAuthToken = $config['sandbox']['authToken'];
 
 /**
  * Send the request.
  */
-$response = $service->getAllBidders($request);
-
+$response = $service->geteBayOfficialTime($request);
 
 /**
- * Output the result of the search.
+ * Output the result of calling the service operation.
  */
-// if (isset($response->errorMessage)) {
-//     foreach ($response->errorMessage->error as $error) {
-//         printf(
-//             "%s: %s\n\n",
-//             $error->severity=== Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
-//             $error->message
-//         );
-//     }
-// }
-print($response->Ack);
+if (isset($response->Errors)) {
+    foreach ($response->Errors as $error) {
+        printf(
+            "%s: %s\n%s\n\n",
+            $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
+            $error->ShortMessage,
+            $error->LongMessage
+        );
+    }
+}
 
 if ($response->Ack !== 'Failure') {
-    //print($response->searchResult->item[0]);
-    //for ($page = 1; $page <= $response->paginationOutput->totalPages; $page++) {
-    // for ($page = 1; $page <= 5; $page++) {
-
-    //     $request->paginationInput->pageNumber = $page;
-    //     $response = $service->findItemsByKeywords($request);
-
-        
-    // }
-    foreach ($response->BidArray->item as $item) {
-        print($item);
-        // $date = new DateTime();
-        // $date->add(new DateInterval($item->sellingStatus->timeLeft));
-        // printf(
-        //     "(%s) [%s] %s: %s %.2f\n",
-        //     $item->itemId,
-        //     $date->format('Y-m-d H:i:s'),
-        //     $item->title,
-        //     $item->sellingStatus->currentPrice->currencyId,
-        //     $item->sellingStatus->currentPrice->value
-        // );
-    }
+    printf("The official eBay time is: %s\n", $response->Timestamp->format('H:i (\G\M\T) \o\n l jS F Y'));
 }
