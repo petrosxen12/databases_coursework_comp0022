@@ -19,7 +19,6 @@
  * Include the SDK by using the autoloader from Composer.
  */
 require 'C:\composer\vendor\autoload.php';
-require __DIR__.'\01-simple-keywords-search.php';
 
 /**
  * Include the configuration values.
@@ -56,6 +55,7 @@ $itemId = "233508847187";
 $request = new Types\GetAllBiddersRequestType();
 $request->ItemID = $itemId;
 $request->CallMode = "ViewAll";
+$request->IncludeBiddingSummary = True;
 /**
  * An user token is required when using the Trading service.
  */
@@ -82,12 +82,14 @@ if (isset($response->Errors)) {
 }
 
 if ($response->Ack !== 'Failure') {
-    printf("Bids History for item %s:\n", $itemId);
+    printf("Bids History for item %s:\n\n", $itemId);
+    printf("UserID (Rating) --- Bid Amount --- Bid Time\n");
     foreach ($response->BidArray->Offer as $bid) {
-        printf("%s (%s) --- %d %s\n", 
-        $bid->User->UserID, 
-        $bid->User->FeedbackScore,
-        $bid->ConvertedPrice->value,
-        $bid->ConvertedPrice->currencyID);
+        printf("%s (%s) --- %d %s --- %s\n", 
+            $bid->User->UserID, 
+            $bid->User->FeedbackScore,
+            $bid->ConvertedPrice->value,
+            $bid->ConvertedPrice->currencyID,
+            $bid->TimeBid->format('H:i (\G\M\T) \o\n l jS F Y'));
     }
 }
