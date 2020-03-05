@@ -10,21 +10,21 @@
 return [
     'sandbox' => [
         'credentials' => [
-            'devId' => '10f1c24b-da51-4904-8cd5-fce396ef6b49',
-            'appId' => 'PrashanK-COMP0022-PRD-fca7fae46-7214786b',
-            'certId' => 'PRD-ca7fae46ecc2-3c5d-4320-90d8-c1a5'
+            'devId' => '0655a9d6-9021-4a82-90cb-bf1d8fbb079e',
+            'appId' => 'ElenaAle-test-SBX-5ca7fae94-c4c3b78e',
+            'certId' => 'SBX-ca7fae941719-ded2-4ff8-8367-03f3'
         ],
-        'authToken' => 'AgAAAA**AQAAAA**aAAAAA**M6JdXg**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4aiCpSBqQSdj6x9nY+seQ**eSsFAA**AAMAAA**MjalGymZIh0oKgk2y6x3+2HrtYTV9/t2TnVukxG2yYRJxS9a+V8Um63yS5w1F/MmVss+k9gwxqur7bLHuypjspd7fr4LH863pwy3EoUUyxiBwabbTk0DoukDU9o+BUN5mX4cd39iY0O4S2is6OykUybuSGrqlJ55ZIfb3C/g6eE/G16HQW7vqaOeNTbDq4ol1riZA6oe6+m+DDShJFvWpac9UxaziURI5kyYRvE6ORl0BAR77ST4+ysqHFXNTNLd4EP2RdvTHz3vSYNTMTASGXWoPPQ8WSqosbZO3bCW5ga3tnzpqFk5GWkD7EsVbYsZZaeSAmRdOths3QZxbq0bdPoORoAVikSjCQtpkHwGDVfMZHtIlGC+v62wHtzV7/TkwNmsgAlW4/RebEHmevu/cK9mKcIkdIWKuqPDeFDDytaXgJnLcWbqZthIFUf5td9ygQ+GFQP/r/1GsG4zu7BfJJRGrPltH+9fPxCDWMRWs+PsGo10B8N9Tljy5CyEe40n1CCwK705Q3CnMW+8AUjAajqTw9WoVJJRrNLhRZQd5CGd7aBfuDnbFafjsArJXq2Er8T9tRUrBBmbegEmdh1JxFy00KfvsVE3Rn9DQflB3H11h1Q4eTo1+XgW0wOMZYmKWTpkpp3FFLhNqFU3yHqjwFiQG081pf/0Jx2yE6KSYxdQ6E+0uwA0Fs8/VVj0TmaJmPfyNlXyR/jjLRPpPB2Q5Mwx2hUxw57T/nSIv3JJlu0Zj2wqjQ0i+mLw/xQQNOpA',
+        'authToken' => 'AgAAAA**AQAAAA**aAAAAA**MTZhXg**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4aiCpSDow6dj6x9nY+seQ**dCsFAA**AAMAAA**fYxN6BD3iaGy0zfnjEB4Dxqt+gYUNyNNGRRY3K0a0FeSf2a/GA1gKFlwt6/QaWqUgGhFd7GTls5y32mv9KcVcK1PaypY/b8AawAd5DE4tYOPBrJ6VKfZULFpvdBjo2f+9EtyM6xwVOay/9PNcdFY9TiT8IxMEHOLbGBwXaqbtlKRnpPPkGc0FxYt34S2FfHz2/9yV4VCEB9tlRwscQ7zhr/iA0zBu2gBzPq0eQApohXP43bq4FL/rpNQzlY7XCMbmilPw0Rlcbi5pg1KdcK7/l8W//Ot6TXgmF/LOuIwN+66N6QWYfds1oHwjL1eC+o9nNFy4c4yIf7GXYrjm50oVcjt7AtqU+9owPmBzSmLUYrsFkz2LlcOUtV0+PD1cA7ZaAAFFMmSxm/Y4UFG6twBzi7atiuPc3GZcPCov3qAssTVc8af3qT1OBt2Es9mdMAUHONHLUhv5J8pv6+7sdWjopY0iQA+9W8oHIKeQxQPMYiI2D+jK0Cg1Erq9nEsWntWGR6UV0QBbHeP13zSD3UkTs2pMoAhm/KIYvwkJC6emrBUrCUxDgyOmPdpqb8Cniz92GtqE3ixIan1AB0ihUrBTHwgLzMHT3r+UFRcctYuJGsDZSbfvKoubTsCVZXBseoPhmplSYtrc8bBsIAtXMxfHkJL+zZdpZBaEtH18le4SxsmMdUAoUqWMMJLKyiMG24VgNdPRGHcjGcZOOFMPxJ51cdrKk4i0pnmij8UeT1CxbtbaPna8fRUWbZB0jzYnzUK',
         'oauthUserToken' => 'Elena_Aleksieva-ElenaAle-test-S-wyvcnfk',
         'ruName' => 'testuser_elena98'
     ],
     'production' => [
         'credentials' => [
-            'devId' => '10f1c24b-da51-4904-8cd5-fce396ef6b49',
-            'appId' => 'PrashanK-COMP0022-PRD-fca7fae46-7214786b',
-            'certId' => 'PRD-ca7fae46ecc2-3c5d-4320-90d8-c1a5',
+            'devId' => '0655a9d6-9021-4a82-90cb-bf1d8fbb079e',
+            'appId' => 'ElenaAle-test-PRD-269ec6b8e-d7cca084',
+            'certId' => 'PRD-69ec6b8e8812-c0b0-455c-bc7e-94ac',
         ],
-        'authToken' => 'AgAAAA**AQAAAA**aAAAAA**soJAXg**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4aiCpSBqQSdj6x9nY+seQ**eSsFAA**AAMAAA**MjalGymZIh0oKgk2y6x3+2HrtYTV9/t2TnVukxG2yYRJxS9a+V8Um63yS5w1F/MmVss+k9gwxqur7bLHuypjspd7fr4LH863pwy3EoUUyxiBwabbTk0DoukDU9o+BUN5mX4cd39iY0O4S2is6OykUybuSGrqlJ55ZIfb3C/g6eE/G16HQW7vqaOeNTbDq4ol1riZA6oe6+m+DDShJFvWpac9UxaziURI5kyYRvE6ORl0BAR77ST4+ysqHFXNTNLd4EP2RdvTHz3vSYNTMTASGXWoPPQ8WSqosbZO3bCW5ga3tnzpqFk5GWkD7EsVbYsZZaeSAmRdOths3QZxbq0bdPoORoAVikSjCQtpkHwGDVfMZHtIlGC+v62wHtzV7/TkwNmsgAlW4/RebEHmevu/cK9mKcIkdIWKuqPDeFDDytaXgJnLcWbqZthIFUf5td9ygQ+GFQP/r/1GsG4zu7BfJJRGrPltH+9fPxCDWMRWs+PsGo10B8N9Tljy5CyEe40n1CCwK705Q3CnMW+8AUjAajqTw9WoVJJRrNLhRZQd5CGd7aBfuDnbFafjsArJXq2Er8T9tRUrBBmbegEmdh1JxFy00KfvsVE3Rn9DQflB3H11h1Q4eTo1+XgW0wOMZYmKWTpkpp3FFLhNqFU3yHqjwFiQG081pf/0Jx2yE6KSYxdQ6E+0uwA0Fs8/VVj0TmaJmPfyNlXyR/jjLRPpPB2Q5Mwx2hUxw57T/nSIv3JJlu0Zj2wqjQ0i+mLw/xQQNOpA',
+        'authToken' => 'AgAAAA**AQAAAA**aAAAAA**pzFhXg**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6MFkIqiDZiFogudj6x9nY+seQ**kjwGAA**AAMAAA**l5GTMt6+aExI+P9m3nh28DwBj6OdO8vaGDew2sEcoIvwO4yPGZ0GzXBD+MCt0LV+GZLf58TUDuwu/owtophCMq8sBfirMam0aaLsaSKVWArj/7rxo/tMECa/qbnwTaZk7qFBXXMjn7YbLN7DhwZiJQeJKZMGSkw9uB0hyFC44xl7oPvktAAn7D9HQUlRypnmAIP3Y4BIoGavgtWSFw4A9+3reR2Eb2Vy50k9IhuZi2ms7vCuvPl0D9i0Pgk9K95mUc/3AIlW8XbbGku1EinspLqOoa9SJNsqhziBLN/7YvdR/LQgc8yz8I5lCfRPp4PfcUpDBXywj9uMLd5EA2xyXYtIPZpgKAEJyT43BBphoe51MEPYBW/s2MR9NKkJW0RglDnGrmfIYnSF+/DrEKkBQIiw3DA+bLn0CZrEqO+498eUri4qU1LoSqmeZzW8T9qPfbUPfeGeVZv6YqJjooEWgqrXcUjOUOkFqAx3mOJS0WVrOoH8Ot92iMYMBoR8dUdEO/uPiBUBqZA7z6/MvXnl6EzSt4xffBnwNY+1LWH5Pn5fpnl+c+YJad4XOj7IbFcpLcgVjBuEJLFcj0gQ/IBGRmjbaGTaGlTA1WP7psJjtZwnGiBUOU+2aQxDlq1KB5CO2v1g4rHKiYiduIEcdhJIieB1tE2tHfuceO1NcMFqVKtIfsfWkqCSribckWr7s7OwqG0LFeFJ3C085xyC0YNsF54wQzsqZROvbyXwD9Z3YQWctQFDPaJ4xUpcjCmqvold',
         'oauthUserToken' => 'YOUR_PRODUCTION_OAUTH_USER_TOKEN',
         'ruName' => 'YOUR_PRODUCTION_RUNAME'
     ]

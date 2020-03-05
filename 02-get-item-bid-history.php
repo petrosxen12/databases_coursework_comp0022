@@ -19,6 +19,7 @@
  * Include the SDK by using the autoloader from Composer.
  */
 require 'C:\composer\vendor\autoload.php';
+require __DIR__.'\01-simple-keywords-search.php';
 
 /**
  * Include the configuration values.
@@ -40,26 +41,31 @@ use \DTS\eBaySDK\Trading\Enums;
  * Create the service object.
  */
 $service = new Services\TradingService([
-    'credentials' => $config['sandbox']['credentials'],
-    'globalId'    => Constants\GlobalIds::GB,
+    'credentials' => $config['production']['credentials'],
     'siteId'      => Constants\SiteIds::GB,
     'httpOptions' => [
         'verify' => false
     ] 
 ]);
 
-$request = new Types\GeteBayOfficialTimeRequestType();
+$itemId = "233508847187";
 
+/**
+ * Create the request object.
+ */
+$request = new Types\GetAllBiddersRequestType();
+$request->ItemID = $itemId;
+$request->CallMode = "ViewAll";
 /**
  * An user token is required when using the Trading service.
  */
 $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-$request->RequesterCredentials->eBayAuthToken = $config['sandbox']['authToken'];
+$request->RequesterCredentials->eBayAuthToken = $config['production']['authToken'];
 
 /**
  * Send the request.
  */
-$response = $service->geteBayOfficialTime($request);
+$response = $service->getAllBidders($request);
 
 /**
  * Output the result of calling the service operation.
@@ -76,5 +82,12 @@ if (isset($response->Errors)) {
 }
 
 if ($response->Ack !== 'Failure') {
-    printf("The official eBay time is: %s\n", $response->Timestamp->format('H:i (\G\M\T) \o\n l jS F Y'));
+    printf("Bids History for item %s:\n", $itemId);
+    foreach ($response->BidArray->Offer as $bid) {
+        printf("%s (%s) --- %d %s\n", 
+        $bid->User->UserID, 
+        $bid->User->FeedbackScore,
+        $bid->ConvertedPrice->value,
+        $bid->ConvertedPrice->currencyID);
+    }
 }
