@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $password_err = "Something went wrong. Please try again later.";
             print_r(sqlsrv_errors());
         } else {
-            header("location: login.html");
+            header("location: login.php");
         }
 
         // Close statement

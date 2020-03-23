@@ -16,18 +16,18 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 require_once "../dbConnect.php";
 
 // Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = "";
+$email = $password = "";
+$email_err = $password_err = "";
 $showerror = "none";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Check if username is empty
-    if (empty(trim($_POST["username"]))) {
-        $username_err = "Please enter username.";
+    // Check if email is empty
+    if (empty(trim($_POST["email"]))) {
+        $email_err = "Please enter email.";
     } else {
-        $username = trim($_POST["username"]);
+        $email = trim($_POST["email"]);
     }
 
     // Check if password is empty
@@ -38,59 +38,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Validate credentials
-    if (empty($username_err) && empty($password_err)) {
+    if (empty($email_err) && empty($password_err)) {
         // Prepare a select statement
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $sql = "SELECT * FROM Accounts WHERE email=(?)";
+        $param_email = trim($_POST["email"]);
+        $params = array($param_email);
 
-        if ($stmt = mysqli_prepare($conn, $sql)) {
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
+        $stmt = sqlsrv_query($conn, $sql, $params, array("Scrollable" => SQLSRV_CURSOR_KEYSET));
 
-            // Set parameters
-            $param_username = $username;
+        // Attempt to execute the prepared statement
+        if ($stmt !== false) {
+            // Check if email exists, if yes then verify password
+            $vals = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+            print($vals['AccountID']);
 
-            // Attempt to execute the prepared statement
-            if (mysqli_stmt_execute($stmt)) {
-                // Store result
-                mysqli_stmt_store_result($stmt);
+            $returnedrows = sqlsrv_num_rows($stmt);
 
-                // Check if username exists, if yes then verify password
-                if (mysqli_stmt_num_rows($stmt) == 1) {
-                    // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
-                    if (mysqli_stmt_fetch($stmt)) {
-                        if (password_verify($password, $hashed_password)) {
-                            // Password is correct, so start a new session
-                            session_start();
+            print(gettype($returnedrows));
 
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;
-
-                            // Redirect user to welcome page
-                            header("location: ../index.php");
-                        } else {
-                            // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid.";
-                            $showerror = "block";
-                        }
-                    }
-                } else {
-                    // Display an error message if username doesn't exist
-                    $username_err = "No account found with that username.";
-                }
-            } else {
-                echo "Oops! Something went wrong. Please try again later.";
+            if ($returnedrows === false) {
+                print("Error calculating rows");
+                print_r(sqlsrv_errors());
             }
 
-            // Close statement
-            mysqli_stmt_close($stmt);
+            if ($returnedrows == 1) {
+                print("INSIDE");
+
+                $hashed_password = $vals['Password'];
+
+                print($hashed_password);
+                print($password);
+
+                if (password_verify($password, $hashed_password)) {
+                    print("Password Match");
+                    // Password is correct, so start a new session
+                    session_start();
+
+                    // Store data in session variables
+                    $_SESSION["loggedin"] = true;
+                    $_SESSION["id"] = $id;
+                    $_SESSION["email"] = $email;
+
+                    // Redirect user to welcome page
+                    header("location: ../index.php");
+                } else {
+                    // Display an error message if password is not valid
+                    $password_err = "The password you entered was not valid.";
+                    $showerror = "block";
+                }
+            } else {
+                // Display an error message if email doesn't exist
+                $email_err = "No account found with that email.";
+            }
+        } else {
+            echo "Oops! Something went wrong. Please try again later.";
         }
+
+        // Close statement
+        sqlsrv_free_stmt($stmt);
     }
 
     // Close connection
-    mysqli_close($conn);
+    sqlsrv_close($conn);
 }
 ?>
 
@@ -121,10 +130,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <div class="card-body">
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                                            <label>Username</label>
-                                            <input type="text" name="username" class="form-control" value="<?php echo $username; ?>" placeholder="Enter username">
-                                            <span class="help-block"><?php echo $username_err; ?></span>
+                                        <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+                                            <label>Email</label>
+                                            <input type="text" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Enter email">
+                                            <span class="help-block"><?php echo $email_err; ?></span>
                                         </div>
                                         <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                                             <label>Password</label>
