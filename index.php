@@ -1,13 +1,14 @@
 <?php
 require_once "dbConnect.php";
+session_start();
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: /index.php");
+    // header("location: /index.php");
     // if (getenv("env") == true) {
     //     header("location: /");
     // }
 
-    exit;
+    // exit;
 } else {
     if (getenv("env") == true) {
         header("location: dist/login.php");
@@ -107,7 +108,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
-                    Logginius
+                    <?php echo $_SESSION['email']; ?>
                 </div>
             </nav>
         </div>
@@ -132,6 +133,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             <!-- ====================================== -->
             <!-- ITEMS THAT REQUIRE IMMEDIATE ATTENTION -->
             <!-- ====================================== -->
+
+            <!-- 
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
@@ -163,6 +166,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                     </div>
                 </div>
             </div>
+             -->
+            <?php require_once("price-graph-comp.php"); ?>
 
             <main>
                 <div class="container-fluid">

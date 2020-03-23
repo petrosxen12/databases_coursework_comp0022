@@ -72,6 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (password_verify($password, $hashed_password)) {
                     print("Password Match");
                     // Password is correct, so start a new session
+
+                    $id = $vals['AccountID'];
+                    $email = $vals['Email'];
+
                     session_start();
 
                     // Store data in session variables
