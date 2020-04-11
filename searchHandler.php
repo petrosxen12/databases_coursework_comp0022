@@ -2,6 +2,7 @@
 
 $auctst = isset($_GET["auction"]);
 $bnst = isset($_GET["buynow"]);
+$blankcheckboxes = false;
 
 if ($auctst || $bnst) {
     $blankcheckboxes = true;
