@@ -50,7 +50,7 @@ function showErrorBadge($blankcheckboxes)
 {
     if (!$blankcheckboxes) {
         echo <<<"EOT"
-        <div style="" class="alert alert-danger" role="alert">
+        <div style="" class="alert alert-primary" role="alert">
             You must choose the type of sale for the searched item.
         </div>
         EOT;
