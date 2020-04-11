@@ -119,6 +119,11 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 </div>
             </nav>
         </div>
+
+        <!-- Search bar and search handler -->
+
+        <?php include "searchHandler.php"; ?>
+
         <div id="layoutSidenav_content">
             <div class="jumbotron top_jumbotron" id="top_jumbotron">
                 <h1 class="display-4">Ebay Mobile Phone Deal Finder</h1>
@@ -145,8 +150,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                                 <label><input type="checkbox" name="buynow" value="1"> Buy Now</label>
                             </div>
                             <button class="btn btn-primary btn-lg" type="submit" role="button">Search</button>
-
                         </div>
+                        <?php showErrorBadge($blankcheckboxes); ?>
 
                         <!-- </div> -->
                     </form>
@@ -154,8 +159,11 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 </p>
             </div>
 
-
-            <?php include "searchHandler.php"; ?>
+            <div class="container">
+                <div class="row mx-auto">
+                    <?php showLabels($blankcheckboxes, $auctst, $bnst, 5); ?>
+                </div>
+            </div>
 
             <!-- ====================================== -->
             <!-- ITEMS THAT REQUIRE IMMEDIATE ATTENTION -->
@@ -194,6 +202,9 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 </div>
             </div>
              -->
+
+
+            <!-- Labels with charts -->
             <?php require_once("price-graph-comp.php"); ?>
 
             <main>
@@ -254,44 +265,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                             </div>
                         </div> -->
                     </div>
-                    <div class="card mb-4">
-                        <div class="card-header"><i class="fas fa-table mr-1"></i>Historical Data of Product</div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Username</th>
-                                            <th>Email</th>
-                                            <th>Password</th>
-                                            <!-- <th>Cash</th> -->
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $tsql = "SELECT * FROM users";
-                                        $getResults = mysqli_query($conn, $tsql);
-                                        while ($row = mysqli_fetch_array($getResults)) {
-                                            // echo '<h3>'. $row['LastName'] .$counter++.'</h3>';
-                                            echo '<tr>';
 
-                                            echo '<th scope="row">' . $row['id'] . '</th>
-                                          <td>' . $row['username'] . '</td> 
-                                          <td>' . $row['email'] . '</td>
-                                          <td>' . $row['password'] . '</td>';
-
-                                            echo '</tr>';
-                                        }
-
-                                        mysqli_free_result($getResults);
-                                        ?>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
