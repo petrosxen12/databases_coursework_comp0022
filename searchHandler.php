@@ -4,7 +4,7 @@ $auctst = isset($_GET["auction"]);
 $bnst = isset($_GET["buynow"]);
 $blankcheckboxes = false;
 
-if ($auctst || $bnst) {
+if (($auctst || $bnst) && isset($_GET["searchstring"])) {
     $blankcheckboxes = true;
 } else {
     $blankcheckboxes = false;
@@ -13,9 +13,15 @@ if ($auctst || $bnst) {
 function showLabels($blankcheckboxes, $auctst, $bnst, $numberofitems)
 {
     if ($blankcheckboxes) {
+
+        // Deal items ==> Labels with charts
+        include_once("price-graph-comp.php");
+
         $badge = addBadge($auctst, $bnst);
 
-        $searchstr = $_GET["searchstring"];
+        //Sanitize input first
+        $searchstr = filter_var($_GET["searchstring"], FILTER_SANITIZE_STRING);
+
         $imgofitem = "";
         $itemdescription = "";
 

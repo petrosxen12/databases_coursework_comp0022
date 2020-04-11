@@ -171,9 +171,6 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             </div>
 
 
-            <!--Deal items ==> Labels with charts -->
-            <?php require_once("price-graph-comp.php"); ?>
-
             <!-- Rest of items not deals -->
             <div class="container">
                 <div class="row justify-content-center">
