@@ -12,6 +12,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 } else {
     if (getenv("env") == true) {
         header("location: dist/login.php");
+    } else {
+        header("location: dist/login.php");
     }
 }
 
@@ -108,27 +110,52 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
-                    <?php echo $_SESSION['email']; ?>
+                    <?php
+                    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+                        echo $_SESSION["email"];
+                    }
+                    ?>
+
                 </div>
             </nav>
         </div>
         <div id="layoutSidenav_content">
             <div class="jumbotron top_jumbotron" id="top_jumbotron">
-                <h1 class="display-4">Monitor prices of cameras</h1>
-                <p class="lead">This web-app offers you the capability to monitor price changes and historical data of cameras</p>
+                <h1 class="display-4">Ebay Mobile Phone Deal Finder</h1>
+                <p class="lead">This web-app offers you the capability to monitor price changes and historical data of popular mobile phones.</p>
                 <hr class="my-4">
                 <p>You can also view the best time to bid or if a certain listing is being sold at a good price. </p>
                 <p class="lead">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
+                        <div class=" input-group">
+                            <input class="form-control" type="text" name="searchstring" placeholder="Search for an item" aria-label="Search" aria-describedby="basic-addon2" />
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="auction" value="1"> Auction</label>
+                                <!-- <input type="hidden" name="auction" value="0"> -->
+                            </div>
+                            <div class="checkbox">
+                                <!-- <input type="hidden" name="buynow" value="0"> -->
+                                <label><input type="checkbox" name="buynow" value="1"> Buy Now</label>
+                            </div>
+                            <button class="btn btn-primary btn-lg" type="submit" role="button">Search</button>
+
+                        </div>
+
+                        <!-- </div> -->
+                    </form>
                     <br>
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
                 </p>
             </div>
+
+
+            <?php include "searchHandler.php"; ?>
 
             <!-- ====================================== -->
             <!-- ITEMS THAT REQUIRE IMMEDIATE ATTENTION -->
