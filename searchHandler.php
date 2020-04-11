@@ -20,9 +20,7 @@ function showLabels($blankcheckboxes, $auctst, $bnst, $numberofitems)
 
         for ($i = 0; $i < $numberofitems; $i++) {
             echo <<<"EOT"
-            <div class="container">
-            <row>
-                <div class="card mb-3" style="max-width: 700px;">
+                <div class="card mb-3" style="max-width: 80%;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <img src="$imgofitem" class="card-img" alt="...">
@@ -36,8 +34,6 @@ function showLabels($blankcheckboxes, $auctst, $bnst, $numberofitems)
                         </div>
                     </div>
                 </div>
-            </row>
-        </div>
         EOT;
         }
     }

@@ -37,13 +37,24 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="index.php">Ebay Monitoring Tool</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button><!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <!-- <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+        <form ction="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" type="">
+            <div class="input-group">
+                <input class="form-control" name="searchstring" type="searchstring" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
                 </div>
-            </div> -->
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label style="color:white; padding-left: 1rem;"><input type="checkbox" name="auction" value="1">Auction</label>
+                        <!-- <input type="hidden" name="auction" value="0"> -->
+                    </div>
+                    <div class="checkbox">
+                        <!-- <input type="hidden" name="buynow" value="0"> -->
+                        <label style="color:white; padding-left: 1rem;"><input type="checkbox" name="buynow" value="1">Buy Now</label>
+                    </div>
+                </div>
+
+            </div>
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
@@ -133,7 +144,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 <p class="lead">
 
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
-                        <div class=" input-group">
+                        <div class="input-group">
                             <input class="form-control" type="text" name="searchstring" placeholder="Search for an item" aria-label="Search" aria-describedby="basic-addon2" />
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
@@ -165,7 +176,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
             <!-- Rest of items not deals -->
             <div class="container">
-                <div class="row mx-auto">
+                <div class="row justify-content-center">
                     <?php showLabels($blankcheckboxes, $auctst, $bnst, 5); ?>
                 </div>
             </div>
