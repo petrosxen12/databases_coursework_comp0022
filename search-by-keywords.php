@@ -41,6 +41,7 @@ function createFindingRequest($keywords, $itemFilter, $sortOrder) {
     $request->itemFilter[] = $itemFilter;
     $request->sortOrder = $sortOrder;
     $request->categoryId = ["9355"];
+    $request->outputSelector = ['SellerInfo', 'StoreInfo'];
     $request->paginationInput = new Types\PaginationInput();
     $request->paginationInput->entriesPerPage = 10;
     $request->paginationInput->pageNumber = 1;
@@ -75,12 +76,14 @@ function getFindingResponse($service, $request) {
                 $date = new DateTime();
                 $date->add(new DateInterval($item->sellingStatus->timeLeft));
                 printf(
-                    "(%s) [%s] %s: %s %.2f\n",
+                    "(%s) [%s] %s: %s %.2f == %s + %d\n",
                     $item->itemId,
                     $date->format('Y-m-d H:i:s'),
                     $item->title,
                     $item->sellingStatus->currentPrice->currencyId,
-                    $item->sellingStatus->currentPrice->value
+                    $item->sellingStatus->currentPrice->value,
+                    $item->sellerInfo->sellerUserName,
+                    $item->sellerInfo->feedbackScore
                 );
             }
         }
