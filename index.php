@@ -160,9 +160,11 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                                 <!-- <input type="hidden" name="buynow" value="0"> -->
                                 <label><input type="checkbox" name="buynow" value="1"> Buy Now</label>
                             </div>
+
+                            <?php showErrorBadge($blankcheckboxes); ?>
+
                             <button class="btn btn-primary btn-lg" type="submit" role="button">Search</button>
                         </div>
-                        <?php showErrorBadge($blankcheckboxes); ?>
 
                         <!-- </div> -->
                     </form>
@@ -182,7 +184,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Featured products</h1>
+                    <h1 class="mt-4">Products you might like</h1>
                     <!-- <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol> -->
