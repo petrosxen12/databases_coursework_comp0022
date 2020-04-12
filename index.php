@@ -183,7 +183,16 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
 
             <main>
-                <div class="container-fluid">
+                <div id="featuredproducts" class="container-fluid">
+
+
+                    <script>
+                        if (document.getElementById("productcard") != null) {
+                            var x = document.getElementById("featuredproducts");
+                            x.style.display = "none";
+                        }
+                    </script>
+
                     <h1 class="mt-4">Products you might like</h1>
                     <!-- <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Dashboard</li>

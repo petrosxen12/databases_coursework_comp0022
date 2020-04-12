@@ -23,11 +23,12 @@ function showLabels($blankcheckboxes, $auctst, $bnst, $numberofitems)
         $searchstr = filter_var($_GET["searchstring"], FILTER_SANITIZE_STRING);
 
         $imgofitem = "";
-        $itemdescription = "";
+        $itemdescription = " ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud e";
+        $updatedtime = 15;
 
         for ($i = 0; $i < $numberofitems; $i++) {
             echo <<<"EOT"
-                <div class="card mb-3" style="max-width: 80%;">
+                <div id="productcard" class="card mb-3" style="max-width: 80%;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <img src="$imgofitem" class="card-img" alt="...">
@@ -35,8 +36,9 @@ function showLabels($blankcheckboxes, $auctst, $bnst, $numberofitems)
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title"> $searchstr $badge  </h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p class="card-text">$itemdescription</p>
+                                <p class="card-text"><small class="text-muted">Last updated $updatedtime mins ago</small></p>
+                                <a href="#" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
