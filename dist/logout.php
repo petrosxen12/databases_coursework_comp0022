@@ -10,7 +10,7 @@ session_destroy();
 
 // Redirect to login page
 if (getenv('APPSETTING_env') == true) {
-    header("location: /logout.php");
+    header("location: /dist/logout.php");
     exit;
 }
 
