@@ -6,11 +6,11 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
     $deploenv = getenv('APPSETTING_env');
 
     if ($deploenv == "true") {
-        echo "inside prod";
+        // echo "inside prod";
         header("location: /dist/login.php");
         exit();
     } else {
-        echo "inside else";
+        // echo "inside else";
         header("location: dist/login.php");
         exit();
     }
