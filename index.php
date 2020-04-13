@@ -2,18 +2,15 @@
 require_once "dbConnect.php";
 session_start();
 
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: /index.php");
-    if (getenv("DEPLOYENV") == "production") {
+if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
+    if ($_ENV['DEPLOYENV'] == "production") {
         header("location: dist/login.php");
+        exit();
+    } else {
+        header("location: dist/login.php");
+        exit();
     }
-
-    // exit;
 }
-// else {
-
-// }
-
 ?>
 
 <!DOCTYPE html>
