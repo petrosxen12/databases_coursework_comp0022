@@ -132,8 +132,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             </nav>
         </div>
 
-        <!-- Search bar and search handler -->
-
+        <!-- Handling Searches -->
         <?php include "searchHandler.php"; ?>
 
         <div id="layoutSidenav_content">
@@ -173,6 +172,59 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 </p>
             </div>
 
+            <!-- AJAX request to track saved products -->
+            <script>
+                function trackItem(itemNumber) {
+                    var utritm = "trackitem";
+                    var tritem = "untrackitem";
+
+                    var untrackitem = "unTrackedItem".concat(itemNumber);
+                    var trackedItem = "trackedItem".concat(itemNumber);
+                    if (!untrackitem && !trackedItem) {
+                        return;
+                    }
+                    // console.log(untrackitem);
+                    // console.log(trackedItem);
+
+                    var x = document.getElementById(untrackitem);
+                    var y = document.getElementById(trackedItem);
+                    var sendVal;
+
+                    if (x.style.display === "none") {
+                        x.style.display = "inline-block";
+                        y.style.display = "none";
+                        sendVal = tritem;
+                    } else {
+                        x.style.display = "none";
+                        y.style.display = "inline-block";
+                        sendVal = utritm;
+                    }
+
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else {
+                        // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var sc = "succcessfulsave".concat(itemNumber);
+                            document.getElementById(sc).innerHTML = this.responseText;
+                            window.setTimeout(function() {
+                                $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                                    $(this).remove();
+                                });
+                            }, 2000);
+                        };
+                    }
+                    var sendResp = "searchHandler.php?".concat(sendVal).concat("=").concat(itemNumber);
+                    xmlhttp.open("GET", sendResp);
+                    xmlhttp.send(sendVal);
+                }
+            </script>
+
 
             <!-- Rest of items not deals -->
             <div class="container">
@@ -186,7 +238,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             <main>
                 <div id="featuredproducts" class="container-fluid">
 
-
+                    <!-- Remove featured products when search is made -->
                     <script>
                         if (document.getElementById("productcard") != null) {
                             var x = document.getElementById("featuredproducts");
