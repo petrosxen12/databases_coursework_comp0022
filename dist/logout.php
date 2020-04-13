@@ -11,8 +11,8 @@ session_destroy();
 // Redirect to login page
 if (getenv('APPSETTING_env') == true) {
     header("location: /dist/logout.php");
-    exit;
+    exit();
 }
 
 header("location: /cwrepo/dist/login.php");
-exit;
+exit();
