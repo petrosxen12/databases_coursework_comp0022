@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $returnedrows = sqlsrv_num_rows($stmt);
 
-            print(gettype($returnedrows));
+            // print(gettype($returnedrows));
 
             if ($returnedrows === false) {
                 print("Error calculating rows");
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // print($password);
 
                 if (password_verify($password, $hashed_password)) {
-                    print("Password Match");
+                    // print("Password Match");
                     // Password is correct, so start a new session
 
                     $id = $vals['AccountID'];
