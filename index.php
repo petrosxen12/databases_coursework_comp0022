@@ -3,7 +3,7 @@ require_once "dbConnect.php";
 session_start();
 
 if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
-    if ($_ENV['DEPLOYENV'] == "production") {
+    if (getenv('DEPLOYENV') == "production") {
         header("location: dist/login.php");
         exit();
     } else {
