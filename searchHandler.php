@@ -53,7 +53,7 @@ function showLabels($blankcheckboxes, $auctst, $bnst, $numberofitems)
                             </div>
                         </div>
                     </div>
-                    <div id="trackitemnotification$i"></div>
+                    <div style="padding:0.5rem;" id="trackitemnotification$i"></div>
                 </div>
         EOT;
         }
