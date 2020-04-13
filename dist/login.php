@@ -62,12 +62,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             if ($returnedrows == 1) {
-                print("INSIDE");
+                // print("INSIDE");
 
                 $hashed_password = $vals['Password'];
 
-                print($hashed_password);
-                print($password);
+                // print($hashed_password);
+                // print($password);
 
                 if (password_verify($password, $hashed_password)) {
                     print("Password Match");
