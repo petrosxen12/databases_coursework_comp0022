@@ -4,9 +4,11 @@ session_start();
 
 if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
     if (getenv('DEPLOYENV') == "production") {
+        echo "inside prod";
         header("location: dist/login.php");
         exit();
     } else {
+        echo "inside else";
         header("location: dist/login.php");
         exit();
     }
