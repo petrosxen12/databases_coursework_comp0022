@@ -63,7 +63,12 @@ require_once "dbConnect.php";
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="dist/logout.php">Logout</a>
+                    <a class="dropdown-item" href="<? if ($deploenv == "true") {
+                                                        echo "dist/logout.php";
+                                                    } else {
+                                                        // echo "inside else";
+                                                        echo ("dist/logout.php");
+                                                    } ?>">Logout</a>
                 </div>
             </li>
         </ul>
