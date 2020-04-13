@@ -3,7 +3,7 @@ require_once "dbConnect.php";
 session_start();
 
 if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
-    $appset = getenv('APPSETTING_DEPLOYENV');
+    $appset = getenv('APPSETTING_env');
     echo ($appset);
 
     if (getenv('APPSETTING_DEPLOYENV') == "production") {
