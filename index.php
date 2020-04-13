@@ -7,7 +7,7 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
 
     if ($deploenv == "true") {
         echo "inside prod";
-        header("location: dist/login.php");
+        header("location: /dist/login.php");
         exit();
     } else {
         echo "inside else";
