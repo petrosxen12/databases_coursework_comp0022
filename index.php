@@ -210,7 +210,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
-                            var sc = "succcessfulsave".concat(itemNumber);
+                            var sc = "trackitemnotification".concat(itemNumber);
                             document.getElementById(sc).innerHTML = this.responseText;
                             window.setTimeout(function() {
                                 $(".alert").fadeTo(500, 0).slideUp(500, function() {
