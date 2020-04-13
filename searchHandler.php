@@ -74,9 +74,9 @@ function showErrorBadge($blankcheckboxes)
 
 function addBadge(bool $auction, bool $buynow)
 {
-    $auctionbadge = '<a href="&auctiononly" class="badge badge-info">Auction</a> ';
+    $auctionbadge = '<a href="#auctiononly" class="badge badge-info">Auction</a> ';
 
-    $buynowbadge = '<a href="$buynowonly" class="badge badge-primary">Buy Now</a> ';
+    $buynowbadge = '<a href="#buynowonly" class="badge badge-primary">Buy Now</a> ';
 
     if ($auction && $buynow) {
         return $auctionbadge . " " . $buynowbadge;

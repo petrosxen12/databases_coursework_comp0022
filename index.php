@@ -3,19 +3,16 @@ require_once "dbConnect.php";
 session_start();
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    // header("location: /index.php");
-    // if (getenv("env") == true) {
-    //     header("location: /");
-    // }
-
-    // exit;
-} else {
-    if (getenv("env") == true) {
-        header("location: dist/login.php");
-    } else {
+    header("location: /index.php");
+    if (getenv("DEPLOYENV") == "production") {
         header("location: dist/login.php");
     }
+
+    // exit;
 }
+// else {
+
+// }
 
 ?>
 
@@ -174,6 +171,33 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
             <!-- AJAX request to track saved products -->
             <script>
+                function filterTypeSale() {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else {
+                        // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var sc = "trackitemnotification".concat(itemNumber);
+                            document.getElementById(sc).innerHTML = this.responseText;
+                            window.setTimeout(function() {
+                                $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                                    $(this).remove();
+                                });
+                            }, 2000);
+                        };
+                    }
+                    var sendResp = "searchHandler.php?".concat(sendVal).concat("=").concat(itemNumber);
+                    xmlhttp.open("GET", sendResp);
+                    xmlhttp.send(sendVal);
+                }
+
+
+
                 function trackItem(itemNumber) {
                     var utritm = "trackitem";
                     var tritem = "untrackitem";
