@@ -47,7 +47,7 @@ function showLabels($blankcheckboxes, $auctst, $bnst, $numberofitems)
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title"> $searchstr $badge <a onclick="trackItem($i)"
-                                style="padding-left: 2rem;" href="#saveitem" class="card-link"><i id="unTrackedItem$i" class="far fa-star"></i><i id="trackedItem$i" style="display:none;" class="fas fa-star"></i></a> </h5>
+                                style="padding-left: 2rem;" href="#trackitem" class="card-link"><i id="unTrackedItem$i" class="far fa-star"></i><i id="trackedItem$i" style="display:none;" class="fas fa-star"></i></a> </h5>
                                 <p class="card-text">$itemdescription</p>
                                 <p class="card-text"><small class="text-muted">Last updated $updatedtime mins ago</small></p>
                             </div>
