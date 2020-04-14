@@ -149,6 +149,7 @@ require_once "dbConnect.php";
                     </div>
                 </div>
 
+                <!-- TODO: Add badge to each card that shows if BUY NOW or AUCTION -->
                 <div style="padding-top: 1rem;" class="container">
                     <div class="card-deck">
                         <div class="card border-warning">
