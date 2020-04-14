@@ -152,7 +152,7 @@ require_once "dbConnect.php";
                 <div style="padding-top: 1rem;" class="container">
                     <div class="card-deck">
                         <div class="card border-warning">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="card-img-top" alt="...">
+                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title text-warning">Card title</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -162,7 +162,7 @@ require_once "dbConnect.php";
                             </div>
                         </div>
                         <div class="card border-danger">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="card-img-top" alt="...">
+                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title text-danger">Card title</h5>
                                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -172,7 +172,7 @@ require_once "dbConnect.php";
                             </div>
                         </div>
                         <div class="card">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="card-img-top" alt="...">
+                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
@@ -185,7 +185,7 @@ require_once "dbConnect.php";
                     </div>
                     <div class="card-deck">
                         <div class="card">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="card-img-top" alt="...">
+                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -195,7 +195,7 @@ require_once "dbConnect.php";
                             </div>
                         </div>
                         <div class="card">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="card-img-top" alt="...">
+                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -205,7 +205,7 @@ require_once "dbConnect.php";
                             </div>
                         </div>
                         <div class="card">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="card-img-top" alt="...">
+                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
