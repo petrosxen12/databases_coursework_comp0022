@@ -26,7 +26,8 @@
             if ($conn == false)
                 die(FormatErrors(sqlsrv_errors()));
             else {
-                echo ("Connection Successful!\n");
+                // echo ("Connection Successful!\n");
+                return $conn;
             }
         } catch (Exception $e) {
             echo ("Error!");
