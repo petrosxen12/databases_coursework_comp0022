@@ -17,6 +17,7 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
 }
 
 require_once "dbConnect.php";
+include "trackItemHandler.php";
 ?>
 
 <!DOCTYPE html>
@@ -157,10 +158,20 @@ require_once "dbConnect.php";
                             <div class="card-body">
                                 <h5 class="card-title text-warning">Card title</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
+                                <!-- Button trigger modal with target being modalItem + itemID -->
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalItem12">
+                                    Show Details
+                                </button>
+
+                                <!-- Modal with item ID-->
+                                <?php showModal(12); ?>
+
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted"><strong>Ending soon | </strong> Last updated 3 mins ago</small>
                             </div>
+
                         </div>
                         <div class="card border-danger">
                             <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
