@@ -30,6 +30,7 @@ require_once "dbConnect.php";
     <meta name="author" content="" />
     <title>Ebay Admin Dashboard</title>
     <link href="dist/css/styles.css" rel="stylesheet" />
+    <link href="dist/css/cards.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
@@ -140,8 +141,16 @@ require_once "dbConnect.php";
         <div id="layoutSidenav_content">
 
             <main>
+
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4">Tracked Items</h1>
+                        <p class="lead">Items you want to keep an eye on.</p>
+                    </div>
+                </div>
+
                 <div style="padding-top: 1rem;" class="container">
-                    <div class="card-columns">
+                    <div class="card-deck">
                         <div class="card border-warning">
                             <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -174,8 +183,17 @@ require_once "dbConnect.php";
                         </div>
 
                     </div>
-
-                    <div class="card-columns">
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </div>
+                        </div>
                         <div class="card">
                             <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -196,7 +214,6 @@ require_once "dbConnect.php";
                                 <small class="text-muted">Last updated 3 mins ago</small>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </main>

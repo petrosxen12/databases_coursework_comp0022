@@ -1,0 +1,20 @@
+.border-warning {
+  border-width: 0.15rem !important;
+}
+.border-danger {
+  border-width: 0.15rem !important;
+}
+
+.card-img-top {
+  width: 70% !important;
+}
+
+.jumbotron {
+  border-bottom-width: 0.05rem !important;
+  border-bottom-color: black !important;
+  border-bottom-style: solid;
+}
+
+.card-deck {
+  padding-bottom: 1rem !important;
+}
