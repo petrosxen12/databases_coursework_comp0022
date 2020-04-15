@@ -23,9 +23,13 @@ function showUntrackPopUp()
     EOT;
 }
 
-function showModal($itemID)
+function showModal($itemID, $type)
 {
   echo <<<"EOT"
+  <button type="button" class="btn btn-$type" data-toggle="modal" data-target="#modalItem$itemID">
+                                    Show Details
+  </button>
+
   <div class="modal fade" id="modalItem$itemID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">

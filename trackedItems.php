@@ -150,6 +150,8 @@ include "trackItemHandler.php";
                     </div>
                 </div>
 
+                <!-- FIXME: ITEMS BELOW MUST BE LOADED FROM DB -->
+
                 <!-- TODO: Add badge to each card that shows if BUY NOW or AUCTION -->
                 <div style="padding-top: 1rem;" class="container">
                     <div class="card-deck">
@@ -160,12 +162,8 @@ include "trackItemHandler.php";
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 
                                 <!-- Button trigger modal with target being modalItem + itemID -->
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalItem12">
-                                    Show Details
-                                </button>
-
                                 <!-- Modal with item ID-->
-                                <?php showModal(12); ?>
+                                <?php showModal(12, "warning"); ?>
 
                             </div>
                             <div class="card-footer">
@@ -178,6 +176,9 @@ include "trackItemHandler.php";
                             <div class="card-body">
                                 <h5 class="card-title text-danger">Card title</h5>
                                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                <!-- Button trigger modal with target being modalItem + itemID -->
+                                <!-- Modal with item ID-->
+                                <?php showModal(13, "danger"); ?>
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted font-weight-bold">Sale Ended</small>
@@ -188,6 +189,10 @@ include "trackItemHandler.php";
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+
+                                <!-- Modal with item ID-->
+                                <?php showModal(14, "primary"); ?>
+
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">Last updated 3 mins ago</small>
