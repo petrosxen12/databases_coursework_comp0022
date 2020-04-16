@@ -1,12 +1,19 @@
 <?php 
 include "connect-to-database.php";
 
-function searchItem($conn, $keyword) {
-    $sql = "EXEC [dbo].[SearchItemByKeyword] @keyword = ?";
+function splitPhrase($phrase) {
+    $keywords = explode(" ", $phrase);
+    $newPhrase = join(" and ", $keywords);
+    return $newPhrase;
+}
+
+function searchItem($conn, $phrase, $type) {
+    $keyword = splitPhrase($phrase);
+    $sql = "EXEC [dbo].[SearchItemByKeyword] @keyword = ?, @type = ?";
     //$output = [];
     $params = array(
-        array($keyword, SQLSRV_PARAM_IN)
-        //array(&$output, SQLSRV_PARAM_OUT)
+        $keyword,
+        $type
     );
     $stmt = sqlsrv_prepare($conn, $sql, $params);
     if($stmt) {  
@@ -31,9 +38,12 @@ function searchItem($conn, $keyword) {
     {  
         echo $row['Title']."\n";  
     }   
- 
+    sqlsrv_free_stmt($stmt);
 }
 
 $connection = connectToDB();
-searchItem($connection, "mint");
+searchItem($connection, "samsung s10", "AuctionWithBIN");
+
+/*Free the statement and connection resources. */
+sqlsrv_close($connection);
 ?>
