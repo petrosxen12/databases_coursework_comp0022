@@ -24,9 +24,9 @@ include "get-item-bidding-history.php";
 $config = require __DIR__.'\configuration.php';
 
 $findingService = createFindingService();
-$types = array("AuctionWithBIN");
+$types = array("Auction");
 $auctionFilter = createItemFilter($types);
-$findingRequest = createFindingRequest("samsung galaxy", $auctionFilter, "BestMatch");
+$findingRequest = createFindingRequest("huawei", $auctionFilter, "BestMatch");
 $response = getFindingResponse($findingService, $findingRequest);
 
 if ($response->ack != "Failure") {
@@ -36,6 +36,5 @@ if ($response->ack != "Failure") {
     }
 }
 /*Free the statement and connection resources. */
-sqlsrv_free_stmt($stmt);
-sqlsrv_close($conn);
+sqlsrv_close($dbConnection);
 ?>
