@@ -14,6 +14,8 @@ if (($auctst || $bnst) && isset($_GET["searchstring"])) {
 }
 
 
+//Responsible for tracking each item based on EBAYID
+//TODO: Must save each item to tracked items
 if (isset($_GET['trackitem'])) {
     // echo $_GET['trackitem'];
     showSuccessPopUp();
@@ -28,9 +30,11 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
 
         //Database call 
         $conn = connectToDB();
+
         //Sanitize input first
         $searchstr = filter_var($_GET["searchstring"], FILTER_SANITIZE_STRING);
 
+        //Return items from DB
         $stmt = searchItem($conn, $searchstr);
 
         // Deal items ==> Labels with charts
@@ -48,7 +52,7 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
             $title = $row['Title'];
 
             echo <<<"EOT"
-                <div id="productcard" class="card mb-3" style="max-width: 70%;">
+                <div id="productcard" class="card mb-3" style="max-width: 90%;">
                     <div class="row no-gutters">
                         <div class="col-md-4 stretched-link">
                             <a href="#gotoitem" ><img src="$imgofitem" class="card-img" alt="..."></a>
