@@ -1,13 +1,29 @@
 <?php
 
-
 function dataToSend($email)
 {
-    $username = sprintf('{"username":"%s"}', $email);
-    echo $username;
-    $data = sprintf('{"personalizations": [{"to": [{"email": "%s"}]}],  "dynamic_template_data":{"username":"%s"},
-    "from": {"email": "sendeexampexample@example.com"},"subject":"Hello, World!",
-    "content": [{"type": "text/plain","value": " "}], "template_id" : "d-7b374370d2944bd9922b903f02abbc18"}', $email, $email);
+    preg_match('/([^@]+)/', $email, $output_array);
+    $username = $output_array[0];
+
+    $data = sprintf('{
+        "from":{
+           "email":"ebaytool@group2.net"
+        },
+        "personalizations":[
+           {
+              "to":[
+                 {
+                    "email":"%s"
+                 }
+              ],
+              "dynamic_template_data":{
+                 "username":"%s",
+               }
+           }
+        ],
+        "template_id":"d-7b374370d2944bd9922b903f02abbc18"
+     }', $email, $username);
+
     return $data;
 }
 
