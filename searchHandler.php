@@ -37,7 +37,8 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
 
         //Return items from DB
         //TODO: Add filtration by checkbox
-        $stmt = searchItem($conn, $searchstr);
+        $type = "Auction";
+        $stmt = searchItem($conn, $searchstr, $type);
 
         // Deal items ==> Labels with charts
 

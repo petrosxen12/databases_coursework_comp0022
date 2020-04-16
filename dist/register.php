@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Set parameters
         $param_email = array(trim($_POST["email"]));
+        $conn = connectToDB();
         $stmt = sqlsrv_query($conn, $sql, $param_email);
 
         if ($stmt === false) {
