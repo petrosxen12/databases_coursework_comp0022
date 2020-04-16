@@ -3,6 +3,7 @@ include("trackItemHandler.php");
 include("dbConnect.php");
 include("searchItemReturn.php");
 
+
 $auctst = isset($_GET["auction"]);
 $bnst = isset($_GET["buynow"]);
 $blankcheckboxes = false;
@@ -35,10 +36,10 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
         $searchstr = filter_var($_GET["searchstring"], FILTER_SANITIZE_STRING);
 
         //Return items from DB
+        //TODO: Add filtration by checkbox
         $stmt = searchItem($conn, $searchstr);
 
         // Deal items ==> Labels with charts
-        include_once("price-graph-comp.php");
 
         $badge = addBadge($auctst, $bnst);
 
