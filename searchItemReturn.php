@@ -2,44 +2,18 @@
 
 include "dbConnect.php";
 
-function searchItem($conn, $item)
-{
-    $sql = "EXEC SearchItem white";
-    // $params = array($item);
-    $executed = sqlsrv_query($conn, $sql);
-
-    if ($executed !== false) {
-        echo ("executed\n");
-        $res = sqlsrv_fetch_object($executed);
-
-        if ($res === false) {
-            die(print_r(sqlsrv_errors(), true));
-            echo "Failed to fetch";
-        }
-
-        while ($res = sqlsrv_fetch_object($executed)) {
-            echo <<<"EOT"
-            <br>$res->EbayID</br>
-            EOT;
-        }
-    } else {
-        echo "Failed";
-        die(print_r(sqlsrv_errors(), true));
-    }
-}
-
 $conn = connectToDB();
 // searchItem($conn, "iphone");
 
 // ------------------------------------------------------------------------------------------
-
-function searchForItem($conn, $item)
+function searchItem($conn, $keyword)
 {
-    $sql = "EXEC [dbo].[SearchItem] ?";
+    $sql = "EXEC [dbo].[SearchItemByKeyword] @keyword = ?";
+    //$output = [];
     $params = array(
-        $item,
+        array($keyword, SQLSRV_PARAM_IN)
+        //array(&$output, SQLSRV_PARAM_OUT)
     );
-
     $stmt = sqlsrv_prepare($conn, $sql, $params);
     if ($stmt) {
         echo "Statement prepared.\n";
@@ -55,10 +29,13 @@ function searchForItem($conn, $item)
         die(print_r(sqlsrv_errors(), true));
     }
 
-    /*Free the statement and connection resources. */
-    //sqlsrv_free_stmt($stmt);
-    //sqlsrv_close($conn);
+    /* Retrieve each row as an associative array and display the results.*/
+    // while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+    //     echo $row['Title'] . "\n";
+    // }
+    $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+    return $row;
 }
 
-// searchForItem($conn, "iphone");
-searchItem($conn, "iphone");
+// $connection = connectToDB();
+// searchItem($connection, "iphone");
