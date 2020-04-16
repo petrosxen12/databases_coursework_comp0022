@@ -8,11 +8,13 @@ function formatTime($item) {
     return $formatted;
 }
 
-function writeDataToDB($conn, $item) {
+function writeDataToDB($conn, $item, $itemDescription) {
     $sql = "EXEC [dbo].[InsertItemData] 
                                     @title = ?,
+                                    @description = ?,
                                     @ebayId	= ?,
                                     @url = ?,
+                                    @imageUrl = ?,
                                     @seller	= ?,
                                     @sellerScore = ?,
                                     @condition = ?,
@@ -22,9 +24,12 @@ function writeDataToDB($conn, $item) {
                                     @auctionDealiness = ?,
                                     @buyNowPrice = ?,
                                     @buyNowDealiness = ?";
-    $params = array($item->title, 
+    
+    $params = array($item->title,
+                    $itemDescription, 
                     $item->itemId,
                     $item->viewItemURL, 
+                    $item->galleryURL,
                     $item->sellerInfo->sellerUserName,
                     $item->sellerInfo->feedbackScore,
                     $item->condition->conditionDisplayName, 
@@ -53,6 +58,8 @@ function writeDataToDB($conn, $item) {
         echo "Error in executing statement.\n";  
         die( print_r( sqlsrv_errors(), true));  
     }  
+
+    sqlsrv_free_stmt($stmt);
 }
 
 ?>

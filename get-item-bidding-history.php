@@ -8,7 +8,6 @@ use \DTS\eBaySDK\Trading\Services;
 use \DTS\eBaySDK\Trading\Types;
 use \DTS\eBaySDK\Trading\Enums;
 
-
 function createTradingService() {
     global $config;
     $service = new Services\TradingService([

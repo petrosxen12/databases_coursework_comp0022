@@ -21,18 +21,20 @@ include "connect-to-database.php";
 include "insert-item-data.php";
 include "search-by-keywords.php";
 include "get-item-bidding-history.php";
+include "get-item-description.php";
 $config = require __DIR__.'\configuration.php';
 
 $findingService = createFindingService();
 $types = array("Auction");
 $auctionFilter = createItemFilter($types);
-$findingRequest = createFindingRequest("huawei", $auctionFilter, "BestMatch");
+$findingRequest = createFindingRequest("samsung s10", $auctionFilter, "BestMatch");
 $response = getFindingResponse($findingService, $findingRequest);
 
 if ($response->ack != "Failure") {
     $dbConnection = connectToDB();
     foreach($response->searchResult->item as $item) {
-        writeDataToDB($dbConnection, $item);
+        $description = getItemDescription($item->itemId);
+        writeDataToDB($dbConnection, $item, $description);
     }
 }
 /*Free the statement and connection resources. */
