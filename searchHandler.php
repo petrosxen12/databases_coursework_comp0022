@@ -55,9 +55,10 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
         $imgofitem = "https://cdn10.bigcommerce.com/s-t4yqg98af9/products/401759/images/5299375/apihiyxpy__55866.1539898792.256.256.jpg?c=2";
         $itemdescription = " ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud e";
         $updatedtime = 15;
+
         if (sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC) == null) {
             echo <<<"EOT"
-            <div style="" class="alert alert-danger" role="alert">
+            <div style="max-width:70%;" class="alert alert-danger" role="alert">
                 No results found.
             </div>
             EOT;
@@ -76,7 +77,7 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title"> $title $badge <a onclick="trackItem($ebayID)"
-                                style="padding-left: 2rem;" href="#trackitem" class="card-link"><i id="unTrackedItem$ebayID" class="far fa-star"></i><i id="trackedItem$ebayID" style="display:none;" class="fas fa-star"></i></a> </h5>
+                                style="padding-left: 1rem;" href="#trackitem" class="card-link"><i id="unTrackedItem$ebayID" class="far fa-star"></i><i id="trackedItem$ebayID" style="display:none;" class="fas fa-star"></i></a> </h5>
                                 <p class="card-text">$itemdescription</p>
                                 <p class="card-text"><small class="text-muted">Last updated $updatedtime mins ago</small></p>
                             </div>

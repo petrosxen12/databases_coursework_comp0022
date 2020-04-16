@@ -1,37 +1,57 @@
 <?php
 
-$url = 'https://api.sendgrid.com/';
-$user = 'Xdp0m87uTuy29xc0dLmRBw';
-$pass = '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';
 
-$params = array(
-    'api_user' => $user,
-    'api_key' => $pass,
-    'to' => 'petros.x12@gmail.com',
-    'subject' => 'testing from curl',
-    'html' => 'testing body',
-    'text' => 'testing body',
-    'from' => 'anna@contoso.com',
-);
+function dataToSend($email)
+{
+    $username = sprintf('{"username":"%s"}', $email);
+    echo $username;
+    $data = sprintf('{"personalizations": [{"to": [{"email": "%s"}]}],  "dynamic_template_data":{"username":"%s"},
+    "from": {"email": "sendeexampexample@example.com"},"subject":"Hello, World!",
+    "content": [{"type": "text/plain","value": " "}], "template_id" : "d-7b374370d2944bd9922b903f02abbc18"}', $email, $email);
+    return $data;
+}
 
-$request = $url . 'api/mail.send.json';
+function sendMail($email)
+{
 
-// Generate curl request
-$session = curl_init($request);
+    $url = 'https://api.sendgrid.com/v3/mail/send';
+    $request = $url;
 
-// Tell curl to use HTTP POST
-curl_setopt($session, CURLOPT_POST, true);
+    // Generate curl request
+    $session = curl_init($request);
 
-// Tell curl that this is the body of the POST
-curl_setopt($session, CURLOPT_POSTFIELDS, $params);
+    // Tell curl to use HTTP POST
+    curl_setopt($session, CURLOPT_POST, true);
 
-// Tell curl not to return headers, but do return the response
-curl_setopt($session, CURLOPT_HEADER, false);
-curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($session, CURLOPT_HTTPHEADER, array(
+        'Authorization: Bearer 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',
+        'Content-Type: application/json'
+    ));
 
-// obtain response
-$response = curl_exec($session);
-curl_close($session);
+    // Tell curl that this is the body of the POST
+    curl_setopt($session, CURLOPT_POSTFIELDS, dataToSend($email));
 
-// print everything out
-print_r($response);
+    // Tell curl not to return headers, but do return the response
+    // curl_setopt($session, CURLOPT_HEADER, false);
+    // curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+
+
+    // obtain response
+    $response = curl_exec($session);
+    curl_close($session);
+
+    // print everything out
+    // print_r($response);
+    return $response;
+}
+
+sendMail("petros.x12@gmail.com");
+/*
+curl --request POST \
+  --url https://api.sendgrid.com/v3/mail/send \
+  --header 'Authorization: Bearer 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' \                   
+  --header 'Content-Type: application/json' \
+  --data '{"personalizations": [{"to": [{"email": "petros.x12@gmail.com"}]}],"from": 
+  {"email": "sendeexampexample@example.com"},"subject": "Hello, World!","content": 
+  [{"type": "text/plain", "value": "Heya!"}]}'
+*/
