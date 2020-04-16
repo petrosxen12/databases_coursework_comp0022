@@ -16,7 +16,7 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
     }
 }
 
-require_once "dbConnect.php";
+// require_once "dbConnect.php";
 ?>
 
 <!DOCTYPE html>

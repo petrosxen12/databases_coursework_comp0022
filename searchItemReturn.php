@@ -1,8 +1,6 @@
 <?php
 
-include "dbConnect.php";
 
-$conn = connectToDB();
 // searchItem($conn, "iphone");
 
 // ------------------------------------------------------------------------------------------
@@ -16,14 +14,15 @@ function searchItem($conn, $keyword)
     );
     $stmt = sqlsrv_prepare($conn, $sql, $params);
     if ($stmt) {
-        echo "Statement prepared.\n";
+        // echo "Statement prepared.\n";
     } else {
-        echo "Error in preparing statement.\n";
+        // echo "Error in preparing statement.\n";
         die(print_r(sqlsrv_errors(), true));
     }
 
     if (sqlsrv_execute($stmt)) {
-        echo "Statement executed.\n";
+        // echo "Statement executed.\n";
+        return $stmt;
     } else {
         echo "Error in executing statement.\n";
         die(print_r(sqlsrv_errors(), true));
@@ -33,8 +32,7 @@ function searchItem($conn, $keyword)
     // while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     //     echo $row['Title'] . "\n";
     // }
-    $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-    return $row;
+    // return $row;
 }
 
 // $connection = connectToDB();
