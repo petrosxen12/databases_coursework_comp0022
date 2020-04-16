@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "SELECT * FROM Accounts WHERE email=(?)";
         $param_email = trim($_POST["email"]);
         $params = array($param_email);
-
+        $conn = connectToDB();
         $stmt = sqlsrv_query($conn, $sql, $params, array("Scrollable" => SQLSRV_CURSOR_KEYSET));
 
         // Attempt to execute the prepared statement
