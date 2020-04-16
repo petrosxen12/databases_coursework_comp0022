@@ -2,7 +2,7 @@
 include("trackItemHandler.php");
 include("dbConnect.php");
 include("searchItemReturn.php");
-
+include("price-graph-comp.php");
 
 $auctst = isset($_GET["auction"]);
 $bnst = isset($_GET["buynow"]);
@@ -29,6 +29,7 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
 {
     if ($blankcheckboxes) {
 
+        dealCards();
         //Database call 
         $conn = connectToDB();
 
