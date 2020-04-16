@@ -1,7 +1,7 @@
 <?php
 // Include config file
 require_once "../dbConnect.php";
-include("sendmail.php");
+include("../sendmail.php");
 // Define variables and initialize with empty values
 $email_err = $password = $confirm_password = $email =  "";
 $password_err = $confirm_password_err = "";
