@@ -37,7 +37,14 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
 
         //Return items from DB
         //TODO: Add filtration by checkbox
-        $type = "Auction";
+
+        if ($auctst) {
+            $type = "Auction";
+        }
+        if ($bnst) {
+            $type = "BuyNow";
+        }
+
         $stmt = searchItem($conn, $searchstr, $type);
 
         // Deal items ==> Labels with charts
@@ -48,6 +55,13 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
         $imgofitem = "https://cdn10.bigcommerce.com/s-t4yqg98af9/products/401759/images/5299375/apihiyxpy__55866.1539898792.256.256.jpg?c=2";
         $itemdescription = " ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud e";
         $updatedtime = 15;
+        if (sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC) == null) {
+            echo <<<"EOT"
+            <div style="" class="alert alert-danger" role="alert">
+                No results found.
+            </div>
+            EOT;
+        }
 
         while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
             $ebayID = $row['EbayID'];

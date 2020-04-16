@@ -18,14 +18,14 @@ function searchItem($conn, $phrase, $type)
     );
     $stmt = sqlsrv_prepare($conn, $sql, $params);
     if ($stmt) {
-        echo "Statement prepared.\n";
+        // echo "Statement prepared.\n";
     } else {
         echo "Error in preparing statement.\n";
         die(print_r(sqlsrv_errors(), true));
     }
 
     if (sqlsrv_execute($stmt)) {
-        echo "Statement executed.\n";
+        // echo "Statement executed.\n";
     } else {
         echo "Error in executing statement.\n";
         die(print_r(sqlsrv_errors(), true));
