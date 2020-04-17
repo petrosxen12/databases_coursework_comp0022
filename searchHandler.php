@@ -51,8 +51,6 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
 
         $badge = addBadge($auctst, $bnst);
 
-
-        // $imgofitem = "https://cdn10.bigcommerce.com/s-t4yqg98af9/products/401759/images/5299375/apihiyxpy__55866.1539898792.256.256.jpg?c=2";
         $updatedtime = 15;
 
         if (sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC) == null) {
@@ -73,6 +71,9 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
             $url = $row['URL'];
             $seller = $row['Seller'];
             $sellerscore = $row['SellerScore'];
+
+            $sellerscorebd = sellerScoreBadge($sellerscore);
+
             $auctionprice = $row['AuctionPrice'];
 
             echo <<<"EOT"
@@ -90,7 +91,7 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
                                 
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item font-weight-bold">Seller: $seller </li>
-                                    <li class="list-group-item font-weight-bold">Seller Score: $sellerscore </li>
+                                    <li class="list-group-item font-weight-bold">Seller Score: $sellerscorebd </li>
                                     <li class="list-group-item font-weight-bold">Price: $auctionprice</li>
                                  </ul>
 
@@ -103,6 +104,19 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
                 </div>
         EOT;
         }
+    }
+}
+
+function sellerScoreBadge($sellerscore)
+{
+    if ($sellerscore > 1000) {
+        return '<h5><span class="badge badge-pill badge-success">Excellent</span></h5>';
+    }
+
+    if ($sellerscore > 100) {
+        return '<h5><span class="badge badge-pill badge-primary">Good</span></h5>';
+    } else {
+        return '<h5><span class="badge badge-pill badge-danger">Bad</span></h5>';
     }
 }
 
