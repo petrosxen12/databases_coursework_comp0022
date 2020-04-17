@@ -3,6 +3,7 @@ include("trackItemHandler.php");
 include("dbConnect.php");
 include("searchItemReturn.php");
 include("price-graph-comp.php");
+include("add-tracked-item.php");
 
 $auctst = isset($_GET["auction"]);
 $bnst = isset($_GET["buynow"]);
@@ -18,8 +19,13 @@ if (($auctst || $bnst) && isset($_GET["searchstring"])) {
 //Responsible for tracking each item based on EBAYID
 //TODO: Must save each item to tracked items
 if (isset($_GET['trackitem'])) {
-    // echo $_GET['trackitem'];
-    showSuccessPopUp();
+    $ebid = $_GET['trackitem'];
+    $conn = connectToDB();
+    session_start();
+    $accountID = $_SESSION['id'];
+    if (addTrackedItem($conn, $ebid, $accountID, 1)) {
+        showSuccessPopUp();
+    }
 }
 if (isset($_GET['untrackitem'])) {
     showUntrackPopUp();
@@ -29,8 +35,6 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
 {
     if ($blankcheckboxes) {
 
-        //Database call 
-        $conn = connectToDB();
 
         //Sanitize input first
         $searchstr = filter_var($_GET["searchstring"], FILTER_SANITIZE_STRING);
@@ -44,7 +48,8 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
         if ($bnst) {
             $type = "BuyNow";
         }
-
+        //Database connection
+        $conn = connectToDB();
         $stmt = searchItem($conn, $searchstr, $type);
 
         // Deal items ==> Labels with charts

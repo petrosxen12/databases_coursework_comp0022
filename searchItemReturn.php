@@ -30,7 +30,7 @@ function searchItem($conn, $phrase, $type)
         echo "Error in executing statement.\n";
         die(print_r(sqlsrv_errors(), true));
     }
-
+    // sqlsrv_close($conn);
     return $stmt;
     /* Retrieve each row as an associative array and display the results.*/
     // while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
