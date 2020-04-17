@@ -3,9 +3,12 @@ function deal_card($chartid = "myChart", $title = "Default Title", $desc = "Defa
 {
     $html = <<<"EOT"
     <div class="card m-2" style="width: 18rem;">
+    <div class="card-header">
+    <span class="badge badge-pill badge-success">Good Deal</span>
+    </div>
         <img src="$img" class="card-img-bottom" alt="...">
             <div class="card-body">
-            <h5 class="card-title">$title <span class="badge badge-pill badge-success">Good Deal</span></h5>
+            <h5 class="card-title">$title</h5>
                 <p class="card-text">$desc</p>
                 <canvas id="$chartid"><canvas>
             </div>

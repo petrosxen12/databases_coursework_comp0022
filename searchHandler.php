@@ -70,6 +70,9 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
             $imgofitem = $row['ImageURL'];
             $itemdescription = $row['Description'];
             $url = $row['URL'];
+            $seller = $row['Seller'];
+            $sellerscore = $row['SellerScore'];
+            $auctionprice = $row['AuctionPrice'];
 
             echo <<<"EOT"
                 <div id="productcard" class="card mb-3" style="max-width: 80%;">
@@ -84,9 +87,15 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
                                 <p class="card-text">$itemdescription</p>
                                 <p class="card-text"><small class="text-muted">Last updated $updatedtime mins ago</small></p>
                                 
-                                <a class="btn btn-primary" href="$url" role="button" target="_blank">More Info</a>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item font-weight-bold">Seller: $seller </li>
+                                    <li class="list-group-item font-weight-bold">Seller Score: $sellerscore </li>
+                                    <li class="list-group-item font-weight-bold">Price: $auctionprice</li>
+                                 </ul>
 
+                                <a class="btn btn-primary" href="$url" role="button" target="_blank">More Info</a>
                             </div>
+                            
                         </div>
                     </div>
                     <div style="padding:0.5rem;" id="trackitemnotification$ebayID"></div>
