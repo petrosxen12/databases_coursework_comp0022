@@ -56,6 +56,5 @@ function removeTrackedItem($ebayId, $accountId) {
     sqlsrv_free_stmt($stmt);
     sqlsrv_close($conn);
 }
-removeTrackedItem("174249446454", "1");
 
 ?>
