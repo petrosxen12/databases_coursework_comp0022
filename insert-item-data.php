@@ -8,7 +8,7 @@ function formatTime($item) {
     return $formatted;
 }
 
-function writeDataToDB($conn, $item, $itemDescription) {
+function writeItemData($conn, $item, $itemDescription) {
     $sql = "EXEC [dbo].[InsertItemData] 
                                     @title = ?,
                                     @description = ?,

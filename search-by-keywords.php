@@ -1,5 +1,5 @@
 <?php
-
+$config = require __DIR__.'\configuration.php';
 /**
  * The namespaces provided by the SDK.
  */
@@ -87,7 +87,19 @@ function getFindingResponse($service, $request) {
                 );
             }
         }
+        return $response;
     }
+    else {
+        echo("Error: Searching by keywords failed!");
+        return NULL;
+    }
+}
+
+function getSearchResults($listingTypes, $keywords, $sortOrder) {
+    $service = createFindingService();
+    $resultFilter = createItemFilter($listingTypes);
+    $request = createFindingRequest($keywords, $resultFilter, $sortOrder);
+    $response = getFindingResponse($service, $request);
     return $response;
 }
 
