@@ -69,12 +69,13 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
             $title = $row['Title'];
             $imgofitem = $row['ImageURL'];
             $itemdescription = $row['Description'];
+            $url = $row['URL'];
 
             echo <<<"EOT"
-                <div id="productcard" class="card mb-3" style="max-width: 90%;">
+                <div id="productcard" class="card mb-3" style="max-width: 80%;">
                     <div class="row no-gutters">
                         <div class="col-md-4 stretched-link">
-                            <a href="#gotoitem" ><img src="$imgofitem" class="card-img" alt="..."></a>
+                            <a href="$url" ><img style="width:80%;" src="$imgofitem" class="mx-auto card-img" alt="..."></a>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -82,6 +83,9 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
                                 style="padding-left: 1rem;" href="#trackitem" class="card-link"><i id="unTrackedItem$ebayID" class="far fa-star"></i><i id="trackedItem$ebayID" style="display:none;" class="fas fa-star"></i></a> </h5>
                                 <p class="card-text">$itemdescription</p>
                                 <p class="card-text"><small class="text-muted">Last updated $updatedtime mins ago</small></p>
+                                
+                                <a class="btn btn-primary" href="$url" role="button" target="_blank">More Info</a>
+
                             </div>
                         </div>
                     </div>
