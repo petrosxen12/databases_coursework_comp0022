@@ -53,8 +53,7 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
         $badge = addBadge($auctst, $bnst);
 
 
-        $imgofitem = "https://cdn10.bigcommerce.com/s-t4yqg98af9/products/401759/images/5299375/apihiyxpy__55866.1539898792.256.256.jpg?c=2";
-        $itemdescription = " ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud e";
+        // $imgofitem = "https://cdn10.bigcommerce.com/s-t4yqg98af9/products/401759/images/5299375/apihiyxpy__55866.1539898792.256.256.jpg?c=2";
         $updatedtime = 15;
 
         if (sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC) == null) {
@@ -68,6 +67,8 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
         while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
             $ebayID = $row['EbayID'];
             $title = $row['Title'];
+            $imgofitem = $row['ImageURL'];
+            $itemdescription = $row['Description'];
 
             echo <<<"EOT"
                 <div id="productcard" class="card mb-3" style="max-width: 90%;">
