@@ -1,4 +1,6 @@
 <?php
+include("trackItemHandler.php");
+
 session_start();
 $deploenv = getenv('APPSETTING_env');
 
@@ -16,10 +18,7 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
     }
 }
 
-// require_once "dbConnect.php";
-include "trackItemHandler.php";
-
-$accountID = $_SESSION["id"];
+// $accountID = $_SESSION["id"];
 
 function addBadge(bool $auction, bool $buynow)
 {
@@ -176,58 +175,12 @@ function addBadge(bool $auction, bool $buynow)
                 <!-- TODO: Add badge to each card that shows if BUY NOW or AUCTION -->
                 <div style="padding-top: 1rem;" class="container">
                     <div class="card-deck">
-                        <div class="card border-warning">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title text-warning">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 
-                                <!-- Button trigger modal with target being modalItem + itemID -->
-                                <!-- Modal with item ID-->
-
-                                <?php showModal(12, "warning"); ?>
-
-                            </div>
-
-                            <!-- Type of sale -->
-                            <div class="container">
-                                <h5>Type <?php echo addBadge(false, true); ?></h5>
-                            </div>
-
-                            <div class="card-footer">
-                                <small class="text-muted"><strong>Ending soon | </strong> Last updated 3 mins ago</small>
-                            </div>
-
-                        </div>
-                        <div class="card border-danger">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title text-danger">Card title</h5>
-                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                <!-- Button trigger modal with target being modalItem + itemID -->
-                                <!-- Modal with item ID-->
-                                <?php showModal(13, "danger"); ?>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted font-weight-bold">Sale Ended</small>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-
-                                <?php showModal(14, "primary"); ?>
-
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
+                        <?php showTrackedItems(); ?>
 
                     </div>
-                    <div class="card-deck">
+
+                    <!-- <div class="card-deck">
                         <div class="card">
                             <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
                             <div class="card-body">
@@ -258,7 +211,7 @@ function addBadge(bool $auction, bool $buynow)
                                 <small class="text-muted">Last updated 3 mins ago</small>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

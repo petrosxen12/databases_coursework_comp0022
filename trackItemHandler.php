@@ -1,5 +1,35 @@
 <?php
 
+// include("manage-tracked-items.php");
+include("dbConnect.php");
+
+function trackItemsForAccount($conn, $accountID)
+{
+
+  $sql = "SELECT * FROM Item WHERE ItemID IN (SELECT ItemID FROM TrackedItems WHERE AccountID=?)";
+  $params = array(
+    $accountID
+  );
+  $stmt = sqlsrv_prepare($conn, $sql, $params);
+  if ($stmt) {
+    // echo "Statement prepared.\n";
+  } else {
+    // echo "Error in preparing statement.\n";
+    die(print_r(sqlsrv_errors(), true));
+  }
+
+  if (sqlsrv_execute($stmt)) {
+    // echo "Statement executed.\n";
+    return $stmt;
+  } else {
+    // echo "Error in executing statement.\n";
+    die(print_r(sqlsrv_errors(), true));
+  }
+
+  // sqlsrv_free_stmt($stmt);
+  // sqlsrv_close($conn);
+}
+
 
 function showSuccessPopUp()
 {
@@ -23,28 +53,23 @@ function showUntrackPopUp()
     EOT;
 }
 
-function showModal($itemID, $type)
+function showModal($itemID, $description, $title)
 {
   echo <<<"EOT"
-  <button type="button" class="btn btn-$type" data-toggle="modal" data-target="#modalItem$itemID">
-                                    Show Details
-  </button>
-
   <div class="modal fade" id="modalItem$itemID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">$title</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
           </div>
           <div class="modal-body">
-              ...
+              <p>$description</p>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
           </div>
       </div>
   </div>
@@ -54,46 +79,87 @@ function showModal($itemID, $type)
 
 function showTrackedItems()
 {
+  // session_start();
+  $accountID = $_SESSION['id'];
+
+  $conn = connectToDB();
+  $stmt = trackItemsForAccount($conn, $accountID);
+
+  // Deal items ==> Labels with charts
+
+  $updatedtime = 15;
+
+  if (sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC) == null) {
+    echo <<<"EOT"
+      <div style="max-width:70%;" class="alert alert-danger" role="alert">
+          You are currently not tracking any items. Perform a search and press the star icon to save an item.
+      </div>
+      EOT;
+  }
+
+  while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+    $ebayID = $row['EbayID'];
+    $title = $row['Title'];
+    $imgofitem = $row['ImageURL'];
+    $itemdescription = $row['Description'];
+    $url = $row['URL'];
+    $seller = $row['Seller'];
+    $sellerscore = $row['SellerScore'];
+    // $sellerscorebd = sellerScoreBadge($sellerscore);
+    // $auctionprice = $row['AuctionPrice'];
+
+    trackItemCard($title, $itemdescription, $imgofitem, "soon", $ebayID);
+  }
 }
 
 function trackItemCard($title, $description, $image, $ending, $itemID)
 {
   $badge = addBadge(true, false);
-
+  $footermsg = "Ending Soon";
+  $footer =  '<small class="text-muted"><strong>' . $footermsg . ' | </strong> Last updated 3 mins ago</small>';
+  $type = "primary";
   if ($ending == "soon") {
     $type = "warning";
+    $footermsg = "Ending Soon";
   }
   if ($ending == "ended") {
     $type = "danger";
+    $footermsg = "Auction Ended";
   }
   if ($ending == "active") {
     $type = "success";
+    $footermsg = "Active";
   }
 
-  $modal = showModal($itemID, $type);
+  $modal = showModal($itemID, $description, $title);
 
   echo <<<"EOT"
   <div class="card border-$type">
-  <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
-  <div class="card-body">
-      <h5 class="card-title text-warning">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+  <img src="$image" class="rounded mx-auto d-block card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title text-$type">$title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 
-      <!-- Button trigger modal with target being modalItem + itemID -->
-      <!-- Modal with item ID-->
-      $modal
+        <!-- Button trigger modal with target being modalItem + itemID -->
+        <button type="button" class="btn btn-$type" data-toggle="modal" data-target="#modalItem$itemID">
+        Show Details
+        </button>
+
+        <!-- Modal with item ID-->
+        $modal
+
+    </div>
+
+    <!-- Type of sale -->
+    <div class="container">
+        <h5>Type $badge</h5>
+    </div>
+
+    <div class="card-footer">
+        $footer
+    </div>
 
   </div>
-
-  <!-- Type of sale -->
-  <div class="container">
-      <h5>Type $badge</h5>
   </div>
-
-  <div class="card-footer">
-      <small class="text-muted"><strong>Ending soon | </strong> Last updated 3 mins ago</small>
-  </div>
-
-</div>
 EOT;
 }
