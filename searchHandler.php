@@ -3,7 +3,7 @@ include("trackItemHandler.php");
 include("dbConnect.php");
 include("searchItemReturn.php");
 include("price-graph-comp.php");
-include("add-tracked-item.php");
+include("manage-tracked-items.php");
 
 $auctst = isset($_GET["auction"]);
 $bnst = isset($_GET["buynow"]);
@@ -30,7 +30,13 @@ if (isset($_GET['trackitem'])) {
 
 //TODO: Remove each item from tracked when unstarred 
 if (isset($_GET['untrackitem'])) {
-    showUntrackPopUp();
+    $ebid = $_GET['untrackitem'];
+    $conn = connectToDB();
+    session_start();
+    $accountID = $_SESSION['id'];
+    if (removeTrackedItem($conn, $ebid, $accountID)) {
+        showUntrackPopUp();
+    }
 }
 
 function showLabels($blankcheckboxes, $auctst, $bnst)
