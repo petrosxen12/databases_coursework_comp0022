@@ -18,6 +18,27 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
 
 require_once "dbConnect.php";
 include "trackItemHandler.php";
+
+$accountID = $_SESSION["id"];
+
+function addBadge(bool $auction, bool $buynow)
+{
+    $auctionbadge = '<a href="#auctiononly" class="badge badge-info">Auction</a> ';
+
+    $buynowbadge = '<a href="#buynowonly" class="badge badge-primary">Buy Now</a> ';
+
+    if ($auction && $buynow) {
+        return $auctionbadge . " " . $buynowbadge;
+    }
+    if ($auction) {
+        return $auctionbadge;
+    }
+    if ($buynow) {
+        return $buynowbadge;
+    }
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -163,9 +184,16 @@ include "trackItemHandler.php";
 
                                 <!-- Button trigger modal with target being modalItem + itemID -->
                                 <!-- Modal with item ID-->
+
                                 <?php showModal(12, "warning"); ?>
 
                             </div>
+
+                            <!-- Type of sale -->
+                            <div class="container">
+                                <h5>Type <?php echo addBadge(false, true); ?></h5>
+                            </div>
+
                             <div class="card-footer">
                                 <small class="text-muted"><strong>Ending soon | </strong> Last updated 3 mins ago</small>
                             </div>
