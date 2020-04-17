@@ -28,7 +28,7 @@ function addTrackedItem($ebayId, $accountId, $priceLB) {
     }
 
     sqlsrv_free_stmt($stmt);
-    sqlsrv_close($dbConnection);
+    sqlsrv_close($conn);
 }
 
 function removeTrackedItem($ebayId, $accountId) {
@@ -56,5 +56,6 @@ function removeTrackedItem($ebayId, $accountId) {
     sqlsrv_free_stmt($stmt);
     sqlsrv_close($conn);
 }
+removeTrackedItem("174249446454", "1");
 
 ?>
