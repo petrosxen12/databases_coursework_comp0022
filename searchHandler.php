@@ -17,7 +17,7 @@ if (($auctst || $bnst) && isset($_GET["searchstring"])) {
 
 
 //Responsible for tracking each item based on EBAYID
-//TODO: Must save each item to tracked items
+//DONE: Must save each item to tracked items
 if (isset($_GET['trackitem'])) {
     $ebid = $_GET['trackitem'];
     $conn = connectToDB();
@@ -27,6 +27,8 @@ if (isset($_GET['trackitem'])) {
         showSuccessPopUp();
     }
 }
+
+//TODO: Remove each item from tracked when unstarred 
 if (isset($_GET['untrackitem'])) {
     showUntrackPopUp();
 }
@@ -92,20 +94,19 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
                                 <h5 class="card-title"> $title $badge <a onclick="trackItem($ebayID)"
                                 style="padding-left: 1rem;" href="#trackitem" class="card-link"><i id="unTrackedItem$ebayID" class="far fa-star"></i><i id="trackedItem$ebayID" style="display:none;" class="fas fa-star"></i></a> </h5>
                                 <p class="card-text">$itemdescription</p>
-                                <p class="card-text"><small class="text-muted">Last updated $updatedtime mins ago</small></p>
-                                
+                                <div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item font-weight-bold">Seller: $seller </li>
                                     <li class="list-group-item font-weight-bold">Seller Score: $sellerscorebd </li>
                                     <li class="list-group-item font-weight-bold">Price: $auctionprice</li>
                                  </ul>
-
+                                </div>
                                 <a class="btn btn-primary" href="$url" role="button" target="_blank">More Info</a>
-                            </div>
-                            
+                            </div>                            
                         </div>
                     </div>
                     <div style="padding:0.5rem;" id="trackitemnotification$ebayID"></div>
+                    <div class="card-footer"><small class="text-muted">Last updated $updatedtime mins ago</small></div>
                 </div>
         EOT;
         }
