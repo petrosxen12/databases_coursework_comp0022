@@ -18,3 +18,8 @@
 .card-deck {
   padding-bottom: 1rem !important;
 }
+
+/* .card {
+  max-width: 20rem !important;
+  display: flex !important;
+} */

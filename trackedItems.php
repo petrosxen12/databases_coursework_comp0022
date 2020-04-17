@@ -16,7 +16,7 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
     }
 }
 
-require_once "dbConnect.php";
+// require_once "dbConnect.php";
 include "trackItemHandler.php";
 
 $accountID = $_SESSION["id"];
@@ -218,7 +218,6 @@ function addBadge(bool $auction, bool $buynow)
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
 
-                                <!-- Modal with item ID-->
                                 <?php showModal(14, "primary"); ?>
 
                             </div>

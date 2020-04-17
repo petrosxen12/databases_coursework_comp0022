@@ -51,3 +51,11 @@ function showModal($itemID, $type)
   </div>
   EOT;
 }
+
+function showTrackedItems()
+{
+}
+
+function trackItemCard()
+{
+}
