@@ -1,5 +1,5 @@
 <?php
-
+$config = require __DIR__.'\configuration.php';
 /**
  * The namespaces provided by the SDK.
  */
@@ -8,12 +8,13 @@ use \DTS\eBaySDK\Trading\Services;
 use \DTS\eBaySDK\Trading\Types;
 use \DTS\eBaySDK\Trading\Enums;
 
-
 function createTradingService() {
     global $config;
     $service = new Services\TradingService([
         'credentials' => $config['production']['credentials'],
+        'globalId'    => Constants\GlobalIds::GB,
         'siteId'      => Constants\SiteIds::GB,
+        'authToken'   => $config['production']['authToken'],
         'httpOptions' => [
             'verify' => false
         ] 
@@ -33,11 +34,7 @@ function createGetAllBiddersRequest($itemId) {
     return $request;
 }
 
-function getBiddingHistory($itemId) {
-    // Create the service object
-    $service = createService();
-    // Create the request object
-    $request = createRequest($itemId);
+function getBiddingHistory($service, $request) {
     // Send the request.
     $response = $service->getAllBidders($request);
 
@@ -56,7 +53,7 @@ function getBiddingHistory($itemId) {
     }
 
     if ($response->Ack !== 'Failure') {
-        printf("Bids History for item %s:\n\n", $itemId);
+        //printf("Bids History for item %s:\n\n", $itemId);
         printf("UserID (Rating) --- Bid Amount --- Bid Time\n");
         foreach ($response->BidArray->Offer as $bid) {
             printf("%s (%s) --- %d %s --- %s\n", 
@@ -66,7 +63,19 @@ function getBiddingHistory($itemId) {
                 $bid->ConvertedPrice->currencyID,
                 $bid->TimeBid->format('H:i (\G\M\T) \o\n l jS F Y'));
         }
+        return $response;
     }
+    else {
+        echo("Error: Get bidding history failed!");
+        return NULL;
+    }
+}
+
+function getBiddingResults($itemId) {
+    $service = createTradingService();
+    $request = createGetAllBiddersRequest($itemId);
+    $responce = getBiddingHistory($service, $request);
+    return $responce;
 }
 
 ?>

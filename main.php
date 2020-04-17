@@ -17,22 +17,34 @@
 
 // Include the SDK by using the autoloader from Composer
 require 'C:\composer\vendor\autoload.php';
-include "connect-to-database.php";
-include "insert-item-data.php";
 include "search-by-keywords.php";
+include "connect-to-database.php";
+include "get-item-description.php";
+include "insert-item-data.php";
 include "get-item-bidding-history.php";
-$config = require __DIR__.'\configuration.php';
+include "insert-bidding-data.php";
 
-$findingService = createFindingService();
-$types = array("Auction", "AuctionWithBIN");
-$auctionFilter = createItemFilter($types);
-$findingRequest = createFindingRequest("iphone 10 white", $auctionFilter, "BestMatch");
-$response = getFindingResponse($findingService, $findingRequest);
 
-if ($response->ack != "Failure") {
+$searchResults = getSearchResults(["Auction"], "samsung s10", "BestMatch");
+
+if ($searchResults) {
     $dbConnection = connectToDB();
-    foreach($response->searchResult->item as $item) {
-        writeDataToDB($dbConnection, $item);
+    foreach($searchResults->searchResult->item as $item) {
+        $description = getItemDescription($item->itemId);
+        writeItemData($dbConnection, $item, $description);
+        echo($item->itemId);
+        $biddingResults = getBiddingResults($item->itemId);
+        if ($biddingResults) {
+            foreach($biddingResults->BidArray->Offer as $bid) {
+                writeBiddingData($dbConnection, 
+                                 $item->itemId, 
+                                 $bid->User->UserID, 
+                                 $bid->ConvertedPrice->value,
+                                 $bid->TimeBid->format('Y-m-d H:i:s'));
+            }
+        }
     }
 }
+/*Free the statement and connection resources. */
+sqlsrv_close($dbConnection);
 ?>
