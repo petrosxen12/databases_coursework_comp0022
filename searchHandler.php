@@ -29,7 +29,6 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
 {
     if ($blankcheckboxes) {
 
-        dealCards();
         //Database call 
         $conn = connectToDB();
 
@@ -62,6 +61,8 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
                 No results found.
             </div>
             EOT;
+        } else {
+            dealCards();
         }
 
         while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
