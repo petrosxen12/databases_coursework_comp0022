@@ -89,15 +89,15 @@ function showTrackedItems()
 
   $updatedtime = 15;
 
-  if (sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC) == null) {
-    echo <<<"EOT"
-      <div style="max-width:70%;" class="alert alert-danger" role="alert">
-          You are currently not tracking any items. Perform a search and press the star icon to save an item.
-      </div>
-      EOT;
-  }
-
   while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+    if ($row == null) {
+      echo <<<"EOT"
+        <div style="max-width:70%;" class="alert alert-danger" role="alert">
+            You are currently not tracking any items. Perform a search and press the star icon to save an item.
+        </div>
+        EOT;
+    }
+
     $ebayID = $row['EbayID'];
     $title = $row['Title'];
     $imgofitem = $row['ImageURL'];
@@ -162,7 +162,6 @@ function trackItemCard($title, $description, $image, $ending, $itemID, $price)
         $footer
     </div>
 
-  </div>
   </div>
 EOT;
 }
