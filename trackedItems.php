@@ -1,7 +1,7 @@
 <?php
+session_start();
 include("trackItemHandler.php");
 
-session_start();
 $deploenv = getenv('APPSETTING_env');
 
 if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
