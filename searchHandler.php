@@ -28,7 +28,7 @@ if (isset($_GET['trackitem'])) {
     }
 }
 
-//TODO: Remove each item from tracked when unstarred 
+//DONE: Remove each item from tracked when unstarred 
 if (isset($_GET['untrackitem'])) {
     $ebid = $_GET['untrackitem'];
     $conn = connectToDB();

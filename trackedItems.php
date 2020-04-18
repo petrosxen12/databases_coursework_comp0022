@@ -171,6 +171,31 @@ function addBadge(bool $auction, bool $buynow)
                 </div>
 
                 <!-- FIXME: ITEMS BELOW MUST BE LOADED FROM DB -->
+                <script>
+                    function removeItem(itemNumber) {
+                        var untritem = "untrackitem";
+
+                        if (window.XMLHttpRequest) {
+                            // code for IE7+, Firefox, Chrome, Opera, Safari
+                            xmlhttp = new XMLHttpRequest();
+                        } else {
+                            // code for IE6, IE5
+                            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+
+                        xmlhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                if (this.responseText === "removed") {
+                                    alert("Item Removed");
+                                }
+                            };
+                        }
+                        var sendResp = "trackItemHandler.php?".concat(untritem).concat("=").concat(itemNumber);
+                        xmlhttp.open("GET", sendResp, true);
+                        xmlhttp.send();
+                    }
+                </script>
+
 
                 <!-- TODO: Add badge to each card that shows if BUY NOW or AUCTION -->
                 <div style="padding-top: 1rem;" class="container">

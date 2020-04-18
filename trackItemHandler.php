@@ -1,7 +1,20 @@
 <?php
 
 // include("manage-tracked-items.php");
+include("manage-tracked-items.php");
 include("dbConnect.php");
+
+if (isset($_GET['untrackitem'])) {
+  $ebid = $_GET['untrackitem'];
+  $conn = connectToDB();
+  session_start();
+  $accountID = $_SESSION['id'];
+  if (removeTrackedItem($conn, $ebid, $accountID)) {
+    // echo "done";
+    // sqlsrv_close($conn);
+    echo "removed";
+  }
+}
 
 function trackItemsForAccount($conn, $accountID)
 {
@@ -103,9 +116,11 @@ function showTrackedItems()
     $imgofitem = $row['ImageURL'];
     $itemdescription = $row['Description'];
     $url = $row['URL'];
-    $seller = $row['Seller'];
-    $sellerscore = $row['SellerScore'];
+    // $seller = $row['Seller'];
+    // $sellerscore = $row['SellerScore'];
     $price = $row['AuctionPrice'];
+    $endingtm = $row['BidDuration'];
+    // $type = auctionEndingCalc($endingtm);
     // $sellerscorebd = sellerScoreBadge($sellerscore);
     // $auctionprice = $row['AuctionPrice'];
 
@@ -147,6 +162,9 @@ function trackItemCard($title, $description, $image, $ending, $itemID, $price)
         <button type="button" class="btn btn-$type" data-toggle="modal" data-target="#modalItem$itemID">
         Show Details
         </button>
+        <button type="button" class="btn btn-danger" onclick="removeItem($itemID)">
+        Remove Item
+        </button>
 
         <!-- Modal with item ID-->
         $modal
@@ -164,4 +182,24 @@ function trackItemCard($title, $description, $image, $ending, $itemID, $price)
 
   </div>
 EOT;
+}
+
+
+function auctionEndingCalc($endingtime)
+{
+  $currdatetime = date('Y-m-d H:i:s');
+  $enddate = strtotime($endingtime);
+
+  $difference = date_diff($currdatetime, $enddate);
+
+  if ($difference < 0) {
+    return "ended";
+  }
+  if ($difference > 2) {
+    return "active";
+  }
+
+  if ($difference >= 1) {
+    return "soon";
+  }
 }
