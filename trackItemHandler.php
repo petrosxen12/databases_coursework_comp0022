@@ -1,20 +1,19 @@
 <?php
 
 // include("manage-tracked-items.php");
-include("manage-tracked-items.php");
 include("dbConnect.php");
 
-if (isset($_GET['untrackitem'])) {
-  $ebid = $_GET['untrackitem'];
-  $conn = connectToDB();
-  session_start();
-  $accountID = $_SESSION['id'];
-  if (removeTrackedItem($conn, $ebid, $accountID)) {
-    // echo "done";
-    // sqlsrv_close($conn);
-    echo "removed";
-  }
-}
+// if (isset($_GET['untrackitem'])) {
+//   $ebid = $_GET['untrackitem'];
+//   $conn = connectToDB();
+//   session_start();
+//   $accountID = $_SESSION['id'];
+//   if (removeTrackedItem($conn, $ebid, $accountID)) {
+//     // echo "done";
+//     // sqlsrv_close($conn);
+//     echo "removed";
+//   }
+// }
 
 function trackItemsForAccount($conn, $accountID)
 {
@@ -41,29 +40,6 @@ function trackItemsForAccount($conn, $accountID)
 
   // sqlsrv_free_stmt($stmt);
   // sqlsrv_close($conn);
-}
-
-
-function showSuccessPopUp()
-{
-  $tr = isset($_GET['trackitem']);
-  if ($tr) {
-    echo <<<"EOT"
-        <div class="alert alert-success" role="alert">
-        <strong>Item Saved</strong> You can check its progress in the tracked items section
-      </div>
-    EOT;
-  }
-}
-
-
-function showUntrackPopUp()
-{
-  echo <<<"EOT"
-        <div class="alert alert-danger" role="alert">
-        <strong>Item unsaved</strong> Removed from tracked items
-      </div>
-    EOT;
 }
 
 function showModal($itemID, $description, $title)

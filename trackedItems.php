@@ -173,7 +173,7 @@ function addBadge(bool $auction, bool $buynow)
                 <!-- FIXME: ITEMS BELOW MUST BE LOADED FROM DB -->
                 <script>
                     function removeItem(itemNumber) {
-                        var untritem = "untrackitem";
+                        var untritem = "untrackitemti";
 
                         if (window.XMLHttpRequest) {
                             // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -188,9 +188,10 @@ function addBadge(bool $auction, bool $buynow)
                                 if (this.responseText === "removed") {
                                     alert("Item Removed");
                                 }
+                                header("Refresh:0");
                             };
                         }
-                        var sendResp = "trackItemHandler.php?".concat(untritem).concat("=").concat(itemNumber);
+                        var sendResp = "searchHandler.php?".concat(untritem).concat("=").concat(itemNumber);
                         xmlhttp.open("GET", sendResp, true);
                         xmlhttp.send();
                     }

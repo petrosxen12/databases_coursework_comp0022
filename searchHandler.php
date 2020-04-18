@@ -1,5 +1,5 @@
 <?php
-include("trackItemHandler.php");
+// include("trackItemHandler.php");
 include("dbConnect.php");
 include("searchItemReturn.php");
 include("price-graph-comp.php");
@@ -15,6 +15,27 @@ if (($auctst || $bnst) && isset($_GET["searchstring"])) {
     $blankcheckboxes = false;
 }
 
+function showSuccessPopUp()
+{
+    $tr = isset($_GET['trackitem']);
+    if ($tr) {
+        echo <<<"EOT"
+        <div class="alert alert-success" role="alert">
+        <strong>Item Saved</strong> You can check its progress in the tracked items section
+      </div>
+    EOT;
+    }
+}
+
+
+function showUntrackPopUp()
+{
+    echo <<<"EOT"
+        <div class="alert alert-danger" role="alert">
+        <strong>Item unsaved</strong> Removed from tracked items
+      </div>
+    EOT;
+}
 
 //Responsible for tracking each item based on EBAYID
 //DONE: Must save each item to tracked items
@@ -36,6 +57,16 @@ if (isset($_GET['untrackitem'])) {
     $accountID = $_SESSION['id'];
     if (removeTrackedItem($conn, $ebid, $accountID)) {
         showUntrackPopUp();
+    }
+}
+
+if (isset($_GET['untrackitemti'])) {
+    $ebid = $_GET['untrackitemti'];
+    $conn = connectToDB();
+    session_start();
+    $accountID = $_SESSION['id'];
+    if (removeTrackedItem($conn, $ebid, $accountID)) {
+        "removed";
     }
 }
 

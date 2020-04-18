@@ -31,7 +31,7 @@ function addTrackedItem($conn, $ebayId, $accountId, $priceLB)
 
 function removeTrackedItem($conn, $ebayId, $accountId)
 {
-    $conn = connectToDB();
+    // $conn = connectToDB();
     $sql = "EXEC [dbo].[DeleteTrackedItemEntry] @ebayId = ?, @accountId = ?";
     $params = array($ebayId, $accountId);
     $stmt = sqlsrv_prepare($conn, $sql, $params);
