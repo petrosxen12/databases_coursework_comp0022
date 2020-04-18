@@ -1,11 +1,12 @@
 <?php 
 
 function formatTime($item) {
-    $date = new DateTime();
-    $date->add(new DateInterval($item->sellingStatus->timeLeft));
-    $formatted = $date->format('Y-m-d H:i:s');
+    #$date = new DateTime();
+    #$date->add(new DateInterval($item->sellingStatus->timeLeft));
+    #$formatted = $date->format('Y-m-d H:i:s');
     //$formatted = $date->format('H:i:s');
-    return $formatted;
+    $formattedInterval = (new DateInterval($item->sellingStatus->timeLeft))->format('%d days %h hours %m minutes %s seconds left');
+    return $formattedInterval;
 }
 
 function writeItemData($conn, $item, $itemDescription) {

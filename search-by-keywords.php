@@ -78,7 +78,7 @@ function getFindingResponse($service, $request) {
                 printf(
                     "(%s) [%s] %s: %s %.2f == %s + %d\n",
                     $item->itemId,
-                    $date->format('Y-m-d H:i:s'),
+                    (new DateInterval($item->sellingStatus->timeLeft))->format('%d days %h hours %m minutes %s seconds left'),
                     $item->title,
                     $item->sellingStatus->currentPrice->currencyId,
                     $item->sellingStatus->currentPrice->value,
