@@ -185,10 +185,10 @@ function addBadge(bool $auction, bool $buynow)
 
                         xmlhttp.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {
+                                location.reload();
                                 if (this.responseText === "removed") {
                                     alert("Item Removed");
                                 }
-                                header("Refresh:0");
                             };
                         }
                         var sendResp = "searchHandler.php?".concat(untritem).concat("=").concat(itemNumber);
