@@ -106,6 +106,9 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
             </nav>
         </div>
 
+        <!-- Handling Searches -->
+        <?php include "searchHandler.php"; ?>
+
         <div id="layoutSidenav_content">
             <div class="jumbotron top_jumbotron" id="top_jumbotron">
                 <h1 class="display-4">Ebay Mobile Phone Deal Finder</h1>
