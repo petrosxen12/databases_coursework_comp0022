@@ -179,39 +179,6 @@ function addBadge(bool $auction, bool $buynow)
                         <?php showTrackedItems(); ?>
 
                     </div>
-
-                    <!-- <div class="card-deck">
-                        <div class="card">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/135/13527/13527274.jpg" class="rounded mx-auto d-block card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

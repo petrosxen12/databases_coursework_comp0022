@@ -105,14 +105,15 @@ function showTrackedItems()
     $url = $row['URL'];
     $seller = $row['Seller'];
     $sellerscore = $row['SellerScore'];
+    $price = $row['AuctionPrice'];
     // $sellerscorebd = sellerScoreBadge($sellerscore);
     // $auctionprice = $row['AuctionPrice'];
 
-    trackItemCard($title, $itemdescription, $imgofitem, "soon", $ebayID);
+    trackItemCard($title, $itemdescription, $imgofitem, "soon", $ebayID, $price);
   }
 }
 
-function trackItemCard($title, $description, $image, $ending, $itemID)
+function trackItemCard($title, $description, $image, $ending, $itemID, $price)
 {
   $badge = addBadge(true, false);
   $footermsg = "Ending Soon";
@@ -138,7 +139,9 @@ function trackItemCard($title, $description, $image, $ending, $itemID)
   <img src="$image" class="rounded mx-auto d-block card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title text-$type">$title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text">
+        <h5>Item Price: $price</h5>
+        </p>
 
         <!-- Button trigger modal with target being modalItem + itemID -->
         <button type="button" class="btn btn-$type" data-toggle="modal" data-target="#modalItem$itemID">
