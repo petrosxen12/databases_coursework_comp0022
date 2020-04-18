@@ -16,6 +16,8 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
         header("location: dist/login.php");
         exit();
     }
+} else {
+    echo "fail";
 }
 
 // $accountID = $_SESSION["id"];
