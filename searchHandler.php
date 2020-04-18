@@ -1,5 +1,6 @@
 <?php
 // include("trackItemHandler.php");
+session_start();
 include("dbConnect.php");
 include("searchItemReturn.php");
 include("price-graph-comp.php");
@@ -42,7 +43,7 @@ function showUntrackPopUp()
 if (isset($_GET['trackitem'])) {
     $ebid = $_GET['trackitem'];
     $conn = connectToDB();
-    session_start();
+    // session_start();
     $accountID = $_SESSION['id'];
     if (addTrackedItem($conn, $ebid, $accountID, 1)) {
         showSuccessPopUp();
@@ -53,7 +54,7 @@ if (isset($_GET['trackitem'])) {
 if (isset($_GET['untrackitem'])) {
     $ebid = $_GET['untrackitem'];
     $conn = connectToDB();
-    session_start();
+    // session_start();
     $accountID = $_SESSION['id'];
     if (removeTrackedItem($conn, $ebid, $accountID)) {
         showUntrackPopUp();
