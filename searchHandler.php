@@ -1,6 +1,7 @@
 <?php
 // include("trackItemHandler.php");
 session_start();
+
 include("dbConnect.php");
 include("searchItemReturn.php");
 include("price-graph-comp.php");

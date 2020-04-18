@@ -107,7 +107,7 @@ function addBadge(bool $auction, bool $buynow)
                             Search Items
                         </a><a class="nav-link" href="prevsearches.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Previous Searches
+                            Previous Deals
                         </a>
                         <div class="sb-sidenav-menu-heading">Tracking</div>
                         <a class="nav-link" href="trackedItems.php">

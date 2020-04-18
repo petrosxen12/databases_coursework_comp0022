@@ -96,11 +96,11 @@ function showTrackedItems()
     // $sellerscore = $row['SellerScore'];
     $price = $row['AuctionPrice'];
     $endingtm = $row['BidDuration'];
-    // $type = auctionEndingCalc($endingtm);
+    $type = auctionEndingCalc($endingtm);
     // $sellerscorebd = sellerScoreBadge($sellerscore);
     // $auctionprice = $row['AuctionPrice'];
 
-    trackItemCard($title, $itemdescription, $imgofitem, "soon", $ebayID, $price);
+    trackItemCard($title, $itemdescription, $imgofitem, $type, $ebayID, $price);
   }
 }
 
@@ -135,7 +135,7 @@ function trackItemCard($title, $description, $image, $ending, $itemID, $price)
         </p>
 
         <!-- Button trigger modal with target being modalItem + itemID -->
-        <button type="button" class="btn btn-$type" data-toggle="modal" data-target="#modalItem$itemID">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalItem$itemID">
         Show Details
         </button>
         <button type="button" class="btn btn-danger" onclick="removeItem($itemID)">
@@ -163,19 +163,16 @@ EOT;
 
 function auctionEndingCalc($endingtime)
 {
-  $currdatetime = date('Y-m-d H:i:s');
-  $enddate = strtotime($endingtime);
-
-  $difference = date_diff($currdatetime, $enddate);
-
-  if ($difference < 0) {
+  preg_match('/(.*) days (.*) hours (.*) minutes (.*) seconds/', $endingtime, $output_array);
+  echo ($output_array);
+  if ($output_array[1] == 0 && $output_array[2] == 0 && $output_array[3] == 0 && $output_array[4] == 0) {
     return "ended";
   }
-  if ($difference > 2) {
-    return "active";
-  }
 
-  if ($difference >= 1) {
+  if ($output_array[1] <= 1) {
     return "soon";
+  }
+  if ($output_array[1] > 2) {
+    return "active";
   }
 }
