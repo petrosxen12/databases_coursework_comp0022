@@ -1,6 +1,5 @@
 <?php
 session_start();
-include "searchHandler.php";
 $deploenv = getenv('APPSETTING_env');
 
 if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
