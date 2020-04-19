@@ -3,6 +3,9 @@
 include "searchHandler.php";
 $deploenv = getenv('APPSETTING_env');
 
+echo isset($_SESSION["loggedin"]);
+echo $_SESSION["loggedin"];
+
 if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
     $deploenv = getenv('APPSETTING_env');
 
