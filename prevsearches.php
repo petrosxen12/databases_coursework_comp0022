@@ -140,6 +140,38 @@ function addBadge(bool $auction, bool $buynow)
                 </div>
 
 
+                <script>
+
+
+
+
+                </script>
+
+                <div class="container">
+                    <div id="deals" class="card-deck">
+                        <div class="card" style="width: 18rem;">
+                            <img src="dist/assets/img/error-404-monochrome.svg" class=" card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+
+                        <div class="card" style="width: 18rem;">
+                            <img src="dist/assets/img/error-404-monochrome.svg" class=" card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+
+                        <div class="card" style="width: 18rem;">
+                            <img src="dist/assets/img/error-404-monochrome.svg" class=" card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
