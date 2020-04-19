@@ -107,8 +107,6 @@ function showTrackedItems()
 function trackItemCard($title, $description, $image, $ending, $itemID, $price)
 {
   $badge = addBadge(true, false);
-  $footermsg = "Ending Soon";
-  $footer =  '<small class="text-muted"><strong>' . $footermsg . ' | </strong> Last updated 3 mins ago</small>';
   $type = "primary";
   if ($ending == "soon") {
     $type = "warning";
@@ -122,6 +120,8 @@ function trackItemCard($title, $description, $image, $ending, $itemID, $price)
     $type = "success";
     $footermsg = "Active";
   }
+  $footer =  '<small class="text-muted"><strong>' . $footermsg . ' | </strong> Last updated 3 mins ago</small>';
+
 
   $modal = showModal($itemID, $description, $title);
 
