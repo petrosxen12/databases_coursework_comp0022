@@ -127,7 +127,7 @@ function trackItemCard($title, $description, $image, $ending, $itemID, $price)
 
   echo <<<"EOT"
   <div class="card border-$type">
-  <img src="$image" class="rounded mx-auto d-block card-img-top" alt="...">
+  <img src="$image"  style="padding-top:0.3rem;" class="rounded mx-auto d-block card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title text-$type">$title</h5>
         <p class="card-text">
