@@ -1,5 +1,6 @@
 <?php
-session_start();
+// session_start();
+include "searchHandler.php";
 $deploenv = getenv('APPSETTING_env');
 
 if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
@@ -107,7 +108,8 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
         </div>
 
         <!-- Handling Searches -->
-        <?php include "searchHandler.php"; ?>
+        <?php //include "searchHandler.php"; 
+        ?>
 
         <div id="layoutSidenav_content">
             <div class="jumbotron top_jumbotron" id="top_jumbotron">
