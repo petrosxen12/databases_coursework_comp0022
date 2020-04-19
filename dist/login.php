@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt !== false) {
             // Check if email exists, if yes then verify password
             $vals = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-            print($vals['AccountID']);
+            // print($vals['AccountID']);
 
             $returnedrows = sqlsrv_num_rows($stmt);
 
