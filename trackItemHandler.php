@@ -164,7 +164,7 @@ EOT;
 function auctionEndingCalc($endingtime)
 {
   preg_match('/(.*) days (.*) hours (.*) minutes (.*) seconds/', $endingtime, $output_array);
-  echo ($output_array);
+  // echo ($output_array);
   if ($output_array[1] == 0 && $output_array[2] == 0 && $output_array[3] == 0 && $output_array[4] == 0) {
     return "ended";
   }
