@@ -25,7 +25,7 @@ include "get-item-bidding-history.php";
 include "insert-bidding-data.php";
 
 
-$searchResults = getSearchResults(["Auction"], "samsung s10", "BestMatch");
+$searchResults = getSearchResults(["Auction"], "huawei", "BestMatch");
 
 if ($searchResults) {
     $dbConnection = connectToDB();
