@@ -22,9 +22,7 @@ function writeItemData($conn, $item, $itemDescription) {
                                     @itemType = ?,
                                     @auctionPrice = ?,
                                     @bidDuration = ?,
-                                    @auctionDealiness = ?,
-                                    @buyNowPrice = ?,
-                                    @buyNowDealiness = ?";
+                                    @buyNowPrice = ?";
     
     $params = array($item->title,
                     $itemDescription, 
@@ -37,9 +35,7 @@ function writeItemData($conn, $item, $itemDescription) {
                     $item->listingInfo->listingType, 
                     $item->sellingStatus->currentPrice->value, 
                     formatTime($item),
-                    NULL, 
-                    $item->listingInfo->buyItNowPrice->value,
-                    NULL  //TODO
+                    $item->listingInfo->buyItNowPrice->value
     );
 
     $stmt = sqlsrv_prepare($conn, $sql, $params);
