@@ -3,7 +3,7 @@
 session_start();
 
 include("dbConnect.php");
-include("searchItemReturn.php");
+include("search-item-by-dealiness.php");
 include("price-graph-comp.php");
 include("manage-tracked-items.php");
 
@@ -91,7 +91,8 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
         }
         //Database connection
         $conn = connectToDB();
-        $stmt = searchItem($conn, $searchstr, $type);
+        $accountID = $_SESSION['id'];
+        $data = searchItemsByDealiness($conn, splitPhrase($searchstr), $type, $accountID);
 
         // Deal items ==> Labels with charts
 
@@ -99,28 +100,29 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
 
         $updatedtime = 15;
 
-        if (sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC) == null) {
+        if ($data == NULL) {
             echo <<<"EOT"
             <div style="max-width:70%;" class="alert alert-danger" role="alert">
                 No results found.
             </div>
             EOT;
+            return;
         } else {
             dealCards();
         }
 
-        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-            $ebayID = $row['EbayID'];
-            $title = $row['Title'];
-            $imgofitem = $row['ImageURL'];
-            $itemdescription = $row['Description'];
-            $url = $row['URL'];
-            $seller = $row['Seller'];
-            $sellerscore = $row['SellerScore'];
+        foreach ($data as $item) {
+            $ebayID = $item['EbayID'];
+            $title = $item['Title'];
+            $imgofitem = $item['ImageURL'];
+            $itemdescription = $item['Description'];
+            $url = $item['URL'];
+            $seller = $item['Seller'];
+            $sellerscore = $item['SellerScore'];
 
             $sellerscorebd = sellerScoreBadge($sellerscore);
 
-            $auctionprice = $row['AuctionPrice'];
+            $auctionprice = $item['AuctionPrice'];
 
             echo <<<"EOT"
                 <div id="productcard" class="card mb-3" style="max-width: 80%;">

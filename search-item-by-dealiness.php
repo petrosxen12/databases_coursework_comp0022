@@ -1,62 +1,66 @@
-<?php 
-include "connect-to-database.php";
+<?php
 
-function splitPhrase($phrase) {
+function splitPhrase($phrase)
+{
     $keywords = explode(" ", $phrase);
     $newPhrase = join(" and ", $keywords);
     return $newPhrase;
 }
 
-function searchItemsByDealiness($conn, $keyword, $listingType, $accountId) {
+function searchItemsByDealiness($conn, $keyword, $listingType, $accountId)
+{
     $sql = "EXEC [dbo].[SearchItemAndCalcDeals] 
                                     @keyword = ?,
                                     @type = ?,
                                     @AccountId = ?";
-    
-    $params = array($keyword,
-                    $listingType, 
-                    $accountId
+
+    $params = array(
+        $keyword,
+        $listingType,
+        $accountId
     );
 
     $stmt = sqlsrv_prepare($conn, $sql, $params);
-    if($stmt) {  
-        echo "Statement prepared.\n";  
-    }  
-    else {  
-        echo "Error in preparing statement.\n";  
-        die( print_r( sqlsrv_errors(), true));  
-    }  
+    if ($stmt) {
+        // echo "Statement prepared.\n";
+    } else {
+        // echo "Error in preparing statement.\n";
+        die(print_r(sqlsrv_errors(), true));
+    }
 
-    if(sqlsrv_execute( $stmt)) {  
-        echo "Statement executed.\n";
+    if (sqlsrv_execute($stmt)) {
+        // echo "Statement executed.\n";
 
         $data = array();
         while (sqlsrv_next_result($stmt)) {
-            /* Retrieve each row as an associative array and display the results.*/  
-            while( $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC))  
-            {  
+            /* Retrieve each row as an associative array and display the results.*/
+            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
                 //echo $row['Title']."\n"; 
-                array_push($data, $row); 
-            } 
+                array_push($data, $row);
+            }
         }
-        
+
         if ($data) {
             return $data;
-        }
-        else {
+        } else {
             return NULL;
         }
-    }  
-    else  
-    {  
-        echo "Error in executing statement.\n";  
-        die( print_r( sqlsrv_errors(), true));  
-    }  
-    
+    } else {
+        // echo "Error in executing statement.\n";
+        die(print_r(sqlsrv_errors(), true));
+    }
+
     sqlsrv_free_stmt($stmt);
 }
 
-$conn = connectToDB();
-$data = searchItemsByDealiness($conn, splitPhrase("huawei p20"), "Auction", "1");
-sqlsrv_close($conn);
-?>
+// $conn = connectToDB();
+// $data = searchItemsByDealiness($conn, splitPhrase("huawei p20"), "Auction", "1");
+
+// $datasize = count($data);
+
+// for ($i = 0; $i < $datasize; $i++) {
+//     echo $data[$i]['Title'] . "\n";
+//     echo " ";
+// }
+
+// sqlsrv_close($conn);
