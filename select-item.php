@@ -42,7 +42,7 @@ function searchItem($conn, $phrase, $type) {
 }
 
 $connection = connectToDB();
-searchItem($connection, "samsung s8 midnight", "AuctionWithBIN");
+searchItem($connection, "huawei p20", "Auction");
 
 /*Free the statement and connection resources. */
 sqlsrv_close($connection);
