@@ -172,7 +172,7 @@ function auctionEndingCalc($endingtime)
   if ($output_array[1] <= 1) {
     return "soon";
   }
-  if ($output_array[1] > 2) {
+  if ($output_array[1] > 1) {
     return "active";
   }
 }
