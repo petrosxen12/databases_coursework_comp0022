@@ -1,6 +1,5 @@
 <?php
 session_start();
-include("trackItemHandler.php");
 
 $deploenv = getenv('APPSETTING_env');
 
@@ -17,6 +16,10 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
         exit();
     }
 }
+
+include("trackItemHandler.php");
+
+
 
 // $accountID = $_SESSION["id"];
 
