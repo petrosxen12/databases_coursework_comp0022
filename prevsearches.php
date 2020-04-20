@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("prevsearches-handler.php");
 include("trackItemHandler.php");
 
 $deploenv = getenv('APPSETTING_env');
@@ -18,25 +19,7 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
     }
 }
 
-// $accountID = $_SESSION["id"];
-
-function addBadge(bool $auction, bool $buynow)
-{
-    $auctionbadge = '<a href="#auctiononly" class="badge badge-info">Auction</a> ';
-
-    $buynowbadge = '<a href="#buynowonly" class="badge badge-primary">Buy Now</a> ';
-
-    if ($auction && $buynow) {
-        return $auctionbadge . " " . $buynowbadge;
-    }
-    if ($auction) {
-        return $auctionbadge;
-    }
-    if ($buynow) {
-        return $buynowbadge;
-    }
-}
-
+$accountID = $_SESSION["id"];
 
 ?>
 
@@ -141,35 +124,12 @@ function addBadge(bool $auction, bool $buynow)
 
 
                 <script>
-
-
-
-
+                    // Ajax Implementation of previous searches
                 </script>
 
                 <div class="container">
-                    <div id="deals" class="card-deck">
-                        <div class="card" style="width: 18rem;">
-                            <img src="dist/assets/img/error-404-monochrome.svg" class=" card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-
-                        <div class="card" style="width: 18rem;">
-                            <img src="dist/assets/img/error-404-monochrome.svg" class=" card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-
-                        <div class="card" style="width: 18rem;">
-                            <img src="dist/assets/img/error-404-monochrome.svg" class=" card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php $conn = connectToDB();
+                    getPrevDeals($conn, $accountID); ?>
                 </div>
 
             </main>
