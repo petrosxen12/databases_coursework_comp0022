@@ -31,7 +31,7 @@ function trackItemsForAccount($conn, $accountID)
   }
 
   if (sqlsrv_execute($stmt)) {
-    // echo "Statement executed.\n";
+    // echo "Statement executed.\n"; 
     return $stmt;
   } else {
     // echo "Error in executing statement.\n";
