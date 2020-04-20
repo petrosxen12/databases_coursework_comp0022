@@ -45,6 +45,8 @@ function getPrevDeals($conn, $accountid)
         $title = $row['Title'];
         $image = $row['ImageURL'];
         $price = $row['AuctionPrice'];
+        $etp = $row['BidDuration'];
+        $url = $row['URL'];
 
         if ($prevsearchid == 0 && $date == 0) {
             echo '<div class="card-deck">';
@@ -61,34 +63,68 @@ function getPrevDeals($conn, $accountid)
         }
         // echo "$counter " . $row['SearchID'] . " " . $row['Title'] . "\n";
         // $counter++;
-        prevSearchCard($image, $title, $price, $date);
+
+
+        $endtype = endcalc($etp);
+        prevSearchCard($image, $title, $price, $date, $endtype, $url);
     }
 
     sqlsrv_free_stmt($stmt);
     sqlsrv_close($conn);
 }
 
-function prevSearchCard($image, $title, $price, $date)
+function prevSearchCard($image, $title, $price, $date, $ending, $url)
 {
-    $type = addBadge(true, false);
+    $badge = addBadge(true, false);
+    if ($ending == "soon") {
+        $type = "warning";
+        $footermsg = "Ending Soon";
+    }
+    if ($ending == "ended") {
+        $type = "danger";
+        $footermsg = "Auction Ended";
+    }
+    if ($ending == "active") {
+        $type = "success";
+        $footermsg = "Active";
+    }
+
     echo <<<"EOT"
-    <div class="card border" style="max-width:60%">
+    <div class="card border-$type" style="max-width:60%">
     <img src="$image"  style="padding-top:0.3rem;" class="rounded mx-auto d-block card-img-top" alt="...">
       <div class="card-body">
           <h5 class="card-title">$title</h5>
           <p class="card-text">
-          <p>Item Price: $price</p>
-          <p>Type: $type</p>
+          <p>Item Price: £<strong>$price</strong></p>
+          <p>Type: $badge</p>
           </p>
-
+          <a class="btn btn-primary" href="$url" role="button" target="_blank">More Info</a>
       </div>
   
       <div class="card-footer">
+            <p><strong>$footermsg</strong></p>
             <p>Searched at <strong>$date</strong></p>
       </div>
   
     </div>
 
     EOT;
+}
+
+
+function endcalc($endingtime)
+{
+    preg_match('/(.*) days (.*) hours (.*) minutes (.*) seconds/', $endingtime, $output_array);
+    // echo ($output_array);
+    if ($output_array[1] == 0 && $output_array[2] == 0 && $output_array[3] == 0 && $output_array[4] == 0) {
+        return "ended";
+    }
+
+    if ($output_array[1] <= 1) {
+        return "soon";
+    }
+    if ($output_array[1] > 1) {
+        return "active";
+    }
 }
 // getPrevDeals(2);

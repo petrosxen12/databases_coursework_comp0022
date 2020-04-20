@@ -139,7 +139,7 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item font-weight-bold">Seller: $seller </li>
                                     <li class="list-group-item font-weight-bold">Seller Score: $sellerscorebd </li>
-                                    <li class="list-group-item font-weight-bold">Price: $auctionprice</li>
+                                    <li class="list-group-item font-weight-bold">£<strong>$auctionprice</strong></li>
                                  </ul>
                                 </div>
                                 <a class="btn btn-primary" href="$url" role="button" target="_blank">More Info</a>

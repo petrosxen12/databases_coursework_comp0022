@@ -131,7 +131,7 @@ function trackItemCard($title, $description, $image, $ending, $itemID, $price)
     <div class="card-body">
         <h5 class="card-title text-$type">$title</h5>
         <p class="card-text">
-        <h5>Item Price: $price</h5>
+        <h5>Item Price: £<strong>$price</strong></h5>
         </p>
 
         <!-- Button trigger modal with target being modalItem + itemID -->
