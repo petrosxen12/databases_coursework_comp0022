@@ -107,11 +107,11 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
             </div>
             EOT;
             return;
-        } else {
-            dealCards();
         }
 
+        $counter = 0;
         foreach ($data as $item) {
+
             $ebayID = $item['EbayID'];
             $title = $item['Title'];
             $imgofitem = $item['ImageURL'];
@@ -123,6 +123,12 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
             $sellerscorebd = sellerScoreBadge($sellerscore);
 
             $auctionprice = $item['AuctionPrice'];
+
+            if ($counter < 3) {
+                deal_card("myChart1", $title, $itemdescription, $imgofitem, $url, $ebayID, $seller, $sellerscorebd, $auctionprice, $updatedtime);
+                $counter++;
+                continue;
+            }
 
             echo <<<"EOT"
                 <div id="productcard" class="card mb-3" style="max-width: 80%;">

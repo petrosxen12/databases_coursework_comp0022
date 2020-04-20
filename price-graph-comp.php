@@ -1,22 +1,39 @@
 <?php
-function deal_card($chartid = "myChart", $title = "Default Title", $desc = "Default Description", $img = "/images/fallback.jpg")
+function deal_card($chartid = "myChart", $title, $desc, $imgofitem, $url, $ebayID, $seller, $sellerscorebd, $auctionprice, $updatedtime)
 {
     $html = <<<"EOT"
-    <div class="card m-2" style="width: 18rem;">
+    <div id="productcard" class="card mb-3" style="max-width: 80%;">
     <div class="card-header">
-    <span class="badge badge-pill badge-success">Good Deal</span>
+    <h4><span class="badge badge-pill badge-success">Good Deal</span></h4>
     </div>
-        <img src="$img" class="card-img-bottom" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">$title</h5>
-                <p class="card-text">$desc</p>
-                <canvas id="$chartid"><canvas>
+        <div class="row no-gutters">
+            <div class="col-md-4 stretched-link">
+                <a href="$url" ><img style="width:80%;" src="$imgofitem" class="mx-auto card-img" alt="..."></a>
             </div>
-    </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"> $title<a onclick="trackItem($ebayID)"
+                    style="padding-left: 1rem;" href="#trackitem" class="card-link"><i id="unTrackedItem$ebayID" class="far fa-star"></i><i id="trackedItem$ebayID" style="display:none;" class="fas fa-star"></i></a> </h5>
+                    <p class="card-text">$desc</p>
+                    <div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item font-weight-bold">Seller: $seller </li>
+                        <!-- <li class="list-group-item font-weight-bold">Seller Score: $sellerscorebd </li> -->
+                        <li class="list-group-item font-weight-bold">Price: £<strong>$auctionprice</strong></li>
+                    </ul>
+                    </div>
+                    <a class="btn btn-primary" href="$url" role="button" target="_blank">More Info</a>
+                </div>                            
+            </div>
+        </div>
+        <div style="padding:0.5rem;" id="trackitemnotification$ebayID"></div>
+        <div class="card-footer"><small class="text-muted">Last updated $updatedtime mins ago</small></div>
+        </div>
     EOT;
 
     echo $html;
 }
+
 
 function dealCards()
 {
