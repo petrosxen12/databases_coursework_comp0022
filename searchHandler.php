@@ -119,16 +119,22 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
             $url = $item['URL'];
             $seller = $item['Seller'];
             $sellerscore = $item['SellerScore'];
+            $endingin = $item['BidDuration'];
 
             $sellerscorebd = sellerScoreBadge($sellerscore);
 
             $auctionprice = $item['AuctionPrice'];
+            $output_array;
+            preg_match('/(.*) days (.*) hours/', $endingin, $output_array);
+            $endingformatted = $output_array[0];
+
 
             if ($counter < 3) {
-                deal_card("myChart1", $title, $itemdescription, $imgofitem, $url, $ebayID, $seller, $sellerscorebd, $auctionprice, $updatedtime);
+                deal_card("myChart1", $title, $itemdescription, $imgofitem, $url, $ebayID, $seller, $sellerscorebd, $auctionprice, $endingformatted);
                 $counter++;
                 continue;
             }
+
 
             echo <<<"EOT"
                 <div id="productcard" class="card mb-3" style="max-width: 80%;">
@@ -153,7 +159,7 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
                         </div>
                     </div>
                     <div style="padding:0.5rem;" id="trackitemnotification$ebayID"></div>
-                    <div class="card-footer"><small class="text-muted">Last updated $updatedtime mins ago</small></div>
+                    <div class="card-footer"><p class="font-weight-bold"> Ending in: $endingformatted</p></div>
                 </div>
         EOT;
         }

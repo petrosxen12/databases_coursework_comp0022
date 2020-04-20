@@ -1,5 +1,5 @@
 <?php
-function deal_card($chartid = "myChart", $title, $desc, $imgofitem, $url, $ebayID, $seller, $sellerscorebd, $auctionprice, $updatedtime)
+function deal_card($chartid = "myChart", $title, $desc, $imgofitem, $url, $ebayID, $seller, $sellerscorebd, $auctionprice, $ending)
 {
     $html = <<<"EOT"
     <div id="productcard" class="card mb-3" style="max-width: 80%;">
@@ -27,7 +27,7 @@ function deal_card($chartid = "myChart", $title, $desc, $imgofitem, $url, $ebayI
             </div>
         </div>
         <div style="padding:0.5rem;" id="trackitemnotification$ebayID"></div>
-        <div class="card-footer"><small class="text-muted">Last updated $updatedtime mins ago</small></div>
+        <div class="card-footer"><small class="text-muted">Ending in: $ending</small></div>
         </div>
     EOT;
 
