@@ -115,7 +115,7 @@ function showTrackedItems()
 
   if ($counter == 4) {
     $mail = $_SESSION['email'];
-    // echo $mail;
+    // echo $mail;  
     // echo count($emailarray);
     sendThreeTrackedItems(
       $mail,
