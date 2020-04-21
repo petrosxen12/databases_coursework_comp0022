@@ -1,6 +1,6 @@
 <?php
 
-function dataToSend($email)
+function onboardingdatasend($email)
 {
    preg_match('/([^@]+)/', $email, $output_array);
    $username = $output_array[0];
@@ -45,7 +45,7 @@ function sendMail($email)
    ));
 
    // Tell curl that this is the body of the POST
-   curl_setopt($session, CURLOPT_POSTFIELDS, dataToSend($email));
+   curl_setopt($session, CURLOPT_POSTFIELDS, onboardingdatasend($email));
 
    // Tell curl not to return headers, but do return the response
    // curl_setopt($session, CURLOPT_HEADER, false);
