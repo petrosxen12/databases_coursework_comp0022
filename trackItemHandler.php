@@ -86,10 +86,13 @@ function showTrackedItems()
   while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     if ($row == null) {
       echo <<<"EOT"
-        <div style="max-width:70%;" class="alert alert-danger" role="alert">
-            You are currently not tracking any items. Perform a search and press the star icon to save an item.
-        </div>
-        EOT;
+      <div class="container">
+      <div style="max-width:70%;" class="alert alert-danger" role="alert">
+          You are currently not tracking any items. Perform a search and press the star icon to save an item.
+      </div>
+      </div>
+      EOT;
+      return;
     }
 
     $ebayID = $row['EbayID'];
@@ -97,11 +100,12 @@ function showTrackedItems()
     $imgofitem = $row['ImageURL'];
     $itemdescription = $row['Description'];
     $url = $row['URL'];
+    $sellingtype = $row['ItemType'];
     // $seller = $row['Seller'];
     // $sellerscore = $row['SellerScore'];
-    $price = $row['AuctionPrice'];
+    $auctionprice = $row['AuctionPrice'];
     $endingtm = $row['BidDuration'];
-    $type = auctionEndingCalc($endingtm);
+    $endingtype = auctionEndingCalc($endingtm);
     // $sellerscorebd = sellerScoreBadge($sellerscore);
     // $auctionprice = $row['AuctionPrice'];
 
@@ -110,7 +114,7 @@ function showTrackedItems()
       $counter++;
     }
 
-    trackItemCard($title, $itemdescription, $imgofitem, $type, $ebayID, $price);
+    trackItemCard($title, $itemdescription, $imgofitem, $endingtype, $ebayID, $auctionprice, $sellingtype);
   }
 
   if ($counter == 4) {
@@ -132,9 +136,18 @@ function showTrackedItems()
   }
 }
 
-function trackItemCard($title, $description, $image, $ending, $itemID, $price)
+function trackItemCard($title, $description, $image, $ending, $itemID, $auctionprice, $sellingtype)
 {
-  $badge = addBadge(true, false);
+  if ($sellingtype == "Auction") {
+    $badge = addBadge(true, false);
+  }
+  if ($sellingtype == "AuctionWithBIN") {
+    $badge = addBadge(true, true);
+  }
+  if ($sellingtype == "FixedPrice") {
+    $badge = addBadge(false, true);
+  }
+
   $type = "primary";
   if ($ending == "soon") {
     $type = "warning";
@@ -153,39 +166,112 @@ function trackItemCard($title, $description, $image, $ending, $itemID, $price)
 
   $modal = showModal($itemID, $description, $title);
 
-  echo <<<"EOT"
-  <div class="card border-$type">
-  <img src="$image"  style="padding-top:0.3rem;" class="rounded mx-auto d-block card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title text-$type">$title</h5>
-        <p class="card-text">
-        <h5>Item Price: £<strong>$price</strong></h5>
-        </p>
-
-        <!-- Button trigger modal with target being modalItem + itemID -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalItem$itemID">
-        Show Details
-        </button>
-        <button type="button" class="btn btn-danger" onclick="removeItem($itemID)">
-        Remove Item
-        </button>
-
-        <!-- Modal with item ID-->
-        $modal
-
+  if ($sellingtype == "Auction") {
+    echo <<<"EOT"
+    <div class="card border-$type">
+    <img src="$image"  style="padding-top:0.3rem;" class="rounded mx-auto d-block card-img-top" alt="...">
+      <div class="card-body">
+          <h5 class="card-title text-$type">$title</h5>
+          <p class="card-text">
+          <h5>Item Price: £<strong>$auctionprice</strong></h5>
+          </p>
+  
+          <!-- Button trigger modal with target being modalItem + itemID -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalItem$itemID">
+          Show Details
+          </button>
+          <button type="button" class="btn btn-danger" onclick="removeItem($itemID)">
+          Remove Item
+          </button>
+  
+          <!-- Modal with item ID-->
+          $modal
+  
+      </div>
+  
+      <!-- Type of sale -->
+      <div class="container">
+          <h5>Type $badge</h5>
+      </div>
+  
+      <div class="card-footer">
+          $footer
+      </div>
+  
     </div>
-
-    <!-- Type of sale -->
-    <div class="container">
-        <h5>Type $badge</h5>
+  EOT;
+  }
+  if ($sellingtype == "AuctionWithBIN") {
+    echo <<<"EOT"
+    <div class="card border-$type">
+    <img src="$image"  style="padding-top:0.3rem;" class="rounded mx-auto d-block card-img-top" alt="...">
+      <div class="card-body">
+          <h5 class="card-title text-$type">$title</h5>
+          <p class="card-text">
+          <h5>Item Price: £<strong>$auctionprice</strong></h5>
+          <h5>Buy Now Item Price: £<strong>$buynowprice</strong></h5>
+          </p>
+  
+          <!-- Button trigger modal with target being modalItem + itemID -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalItem$itemID">
+          Show Details
+          </button>
+          <button type="button" class="btn btn-danger" onclick="removeItem($itemID)">
+          Remove Item
+          </button>
+  
+          <!-- Modal with item ID-->
+          $modal
+  
+      </div>
+  
+      <!-- Type of sale -->
+      <div class="container">
+          <h5>Type $badge</h5>
+      </div>
+  
+      <div class="card-footer">
+          $footer
+      </div>
+  
     </div>
-
-    <div class="card-footer">
-        $footer
+  EOT;
+  }
+  if ($sellingtype == "FixedPrice") {
+    echo <<<"EOT"
+    <div class="card border-$type">
+    <img src="$image"  style="padding-top:0.3rem;" class="rounded mx-auto d-block card-img-top" alt="...">
+      <div class="card-body">
+          <h5 class="card-title text-$type">$title</h5>
+          <p class="card-text">
+          <h5>Item Price: £<strong>$auctionprice</strong></h5>
+          </p>
+  
+          <!-- Button trigger modal with target being modalItem + itemID -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalItem$itemID">
+          Show Details
+          </button>
+          <button type="button" class="btn btn-danger" onclick="removeItem($itemID)">
+          Remove Item
+          </button>
+  
+          <!-- Modal with item ID-->
+          $modal
+  
+      </div>
+  
+      <!-- Type of sale -->
+      <div class="container">
+          <h5>Type $badge</h5>
+      </div>
+  
+      <div class="card-footer">
+          <!-- $footer -->
+      </div>
+  
     </div>
-
-  </div>
-EOT;
+  EOT;
+  }
 }
 
 
