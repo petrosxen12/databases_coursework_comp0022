@@ -87,11 +87,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($deploenv == "true") {
                 // echo "inside prod";
                 header("location: /dist/login.php");
-                // exit();
+                exit();
             } else {
                 // echo "inside else";
-                header("location: dist/login.php");
-                // exit();
+                header("location: login.php");
+                exit();
             }
             // header("location: login.php");
         }
