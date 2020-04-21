@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($deploenv == "true") {
                         // echo "inside prod";
                         // header("location: /dist/login.php");
-                        echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
+                        echo "<script type='text/javascript'> document.location = '/index.php'; </script>";
                         exit();
                     } else {
                         // echo "inside else";
