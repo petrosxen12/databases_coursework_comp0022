@@ -2,7 +2,7 @@
 
 // include("manage-tracked-items.php");
 include("dbConnect.php");
-
+include("sendmail.php");
 // if (isset($_GET['untrackitem'])) {
 //   $ebid = $_GET['untrackitem'];
 //   $conn = connectToDB();
@@ -77,6 +77,7 @@ function showTrackedItems()
   // Deal items ==> Labels with charts
 
   $updatedtime = 15;
+  $counter = 0;
 
   while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     if ($row == null) {
