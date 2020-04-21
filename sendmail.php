@@ -27,7 +27,7 @@ function onboardingdatasend($email)
    return $data;
 }
 
-function threetrackeditems($email, $img1, $img2, $img3, $desc1, $desc2, $desc3)
+function threetrackeditems($email, $title1, $img1, $desc1, $title2, $img2, $desc2, $title3, $img3, $desc3)
 {
    preg_match('/([^@]+)/', $email, $output_array);
    $username = $output_array[0];
@@ -46,24 +46,24 @@ function threetrackeditems($email, $img1, $img2, $img3, $desc1, $desc2, $desc3)
               "dynamic_template_data":{
                  "item_title1":"%s",
                  "img_src1":"%s",
-                 "description1":"%s",
+                 "item_description1":"%s",
                  "item_title2":"%s",
                  "img_src2":"%s",
-                 "description2":"%s",
+                 "item_description2":"%s",
                  "item_title3":"%s",
                  "img_src3":"%s",
-                 "description3":"%s"
+                 "item_description3":"%s"
                }
            }
         ],
         "template_id":"d-f0441a0394f74cf1bcc6142b6bfcef39"
-     }', $email, $img1, $desc1, $img2, $desc2, $img3, $desc3);
+     }', $email, $title1, $img1, $desc1, $title2, $img2, $desc2, $title3, $img3, $desc3);
 
    return $data;
 }
 
 
-function sendThreeTrackedItems($email, $img1, $img2, $img3, $desc1, $desc2, $desc3)
+function sendThreeTrackedItems($email, $title1, $img1, $desc1, $title2, $img2, $desc2, $title3, $img3, $desc3)
 {
    $url = 'https://api.sendgrid.com/v3/mail/send';
    $request = $url;
@@ -80,7 +80,7 @@ function sendThreeTrackedItems($email, $img1, $img2, $img3, $desc1, $desc2, $des
    ));
 
    // Tell curl that this is the body of the POST
-   curl_setopt($session, CURLOPT_POSTFIELDS, threetrackeditems($email, $img1, $img2, $img3, $desc1, $desc2, $desc3));
+   curl_setopt($session, CURLOPT_POSTFIELDS, threetrackeditems($email, $title1, $img1, $desc1, $title2, $img2, $desc2, $title3, $img3, $desc3));
 
    // Tell curl not to return headers, but do return the response
    // curl_setopt($session, CURLOPT_HEADER, false);
@@ -132,6 +132,18 @@ function sendMail($email)
    return $response;
 }
 
+// sendThreeTrackedItems(
+//    "petros.x12@gmail.com",
+//    "test1",
+//    "https://thumbs4.ebaystatic.com/m/m63bH0dgdjK1TJmGLnHZrgw/140.jpg",
+//    "hello1",
+//    "test2",
+//    "https://thumbs4.ebaystatic.com/m/m63bH0dgdjK1TJmGLnHZrgw/140.jpg",
+//    "hello2",
+//    "test3",
+//    "https://thumbs4.ebaystatic.com/m/m63bH0dgdjK1TJmGLnHZrgw/140.jpg",
+//    "hello3"
+// );
 // sendMail("petros.x12@gmail.com");
 /*
 curl --request POST \

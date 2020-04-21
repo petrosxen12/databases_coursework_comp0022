@@ -87,8 +87,12 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
             $type = "Auction";
         }
         if ($bnst) {
-            $type = "BuyNow";
+            $type = "FixedPrice";
         }
+        if ($auctst && $bnst) {
+            $type = "AuctionWithBIN";
+        }
+
         //Database connection
         $conn = connectToDB();
         $accountID = $_SESSION['id'];

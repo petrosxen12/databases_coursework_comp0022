@@ -77,7 +77,11 @@ function showTrackedItems()
   // Deal items ==> Labels with charts
 
   $updatedtime = 15;
-  $counter = 0;
+
+  $flag = 0;
+
+  $counter = 1;
+  $emailarray = array();
 
   while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     if ($row == null) {
@@ -101,7 +105,30 @@ function showTrackedItems()
     // $sellerscorebd = sellerScoreBadge($sellerscore);
     // $auctionprice = $row['AuctionPrice'];
 
+    if ($counter < 4 && $row != null) {
+      array_push($emailarray, $row);
+      $counter++;
+    }
+
     trackItemCard($title, $itemdescription, $imgofitem, $type, $ebayID, $price);
+  }
+
+  if ($counter == 4) {
+    $mail = $_SESSION['email'];
+    // echo $mail;
+    // echo count($emailarray);
+    sendThreeTrackedItems(
+      $mail,
+      $emailarray[0]['Title'],
+      $emailarray[0]['ImageURL'],
+      $emailarray[0]['Description'],
+      $emailarray[1]['Title'],
+      $emailarray[1]['ImageURL'],
+      $emailarray[1]['Description'],
+      $emailarray[2]['Title'],
+      $emailarray[2]['ImageURL'],
+      $emailarray[2]['Description']
+    );
   }
 }
 
