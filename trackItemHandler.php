@@ -104,6 +104,7 @@ function showTrackedItems()
     // $seller = $row['Seller'];
     // $sellerscore = $row['SellerScore'];
     $auctionprice = $row['AuctionPrice'];
+    $buynowprice = $row['BuyNowPrice'];
     $endingtm = $row['BidDuration'];
     $endingtype = auctionEndingCalc($endingtm);
     // $sellerscorebd = sellerScoreBadge($sellerscore);
@@ -114,7 +115,7 @@ function showTrackedItems()
       $counter++;
     }
 
-    trackItemCard($title, $itemdescription, $imgofitem, $endingtype, $ebayID, $auctionprice, $sellingtype);
+    trackItemCard($title, $itemdescription, $imgofitem, $endingtype, $ebayID, $auctionprice, $buynowprice, $sellingtype, $url);
   }
 
   if ($counter == 4) {
@@ -136,7 +137,7 @@ function showTrackedItems()
   }
 }
 
-function trackItemCard($title, $description, $image, $ending, $itemID, $auctionprice, $sellingtype)
+function trackItemCard($title, $description, $image, $ending, $itemID, $auctionprice, $buynowprice, $sellingtype, $url)
 {
   if ($sellingtype == "Auction") {
     $badge = addBadge(true, false);
@@ -183,7 +184,9 @@ function trackItemCard($title, $description, $image, $ending, $itemID, $auctionp
           <button type="button" class="btn btn-danger" onclick="removeItem($itemID)">
           Remove Item
           </button>
-  
+          <a role="button" class="btn btn-success" href="$url" target="_blank">
+          Go to item
+          </a>
           <!-- Modal with item ID-->
           $modal
   
@@ -219,7 +222,9 @@ function trackItemCard($title, $description, $image, $ending, $itemID, $auctionp
           <button type="button" class="btn btn-danger" onclick="removeItem($itemID)">
           Remove Item
           </button>
-  
+          <a role="button" class="btn btn-success" href="$url" target="_blank">
+          Go to item
+          </a>
           <!-- Modal with item ID-->
           $modal
   
@@ -254,7 +259,9 @@ function trackItemCard($title, $description, $image, $ending, $itemID, $auctionp
           <button type="button" class="btn btn-danger" onclick="removeItem($itemID)">
           Remove Item
           </button>
-  
+          <a role="button" class="btn btn-success" href="$url" target="_blank">
+          Go to item
+          </a>
           <!-- Modal with item ID-->
           $modal
   
