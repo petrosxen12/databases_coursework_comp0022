@@ -124,10 +124,12 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
             $seller = $item['Seller'];
             $sellerscore = $item['SellerScore'];
             $endingin = $item['BidDuration'];
+            $buynowprice = $item['BuyNowPrice'];
 
             $sellerscorebd = sellerScoreBadge($sellerscore);
 
             $auctionprice = $item['AuctionPrice'];
+
             $output_array;
             preg_match('/(.*) days (.*) hours/', $endingin, $output_array);
             $endingformatted = $output_array[0];
@@ -139,8 +141,8 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
                 continue;
             }
 
-
-            echo <<<"EOT"
+            if ($type == "Auction") {
+                echo <<<"EOT"
                 <div id="productcard" class="card mb-3" style="max-width: 80%;">
                     <div class="row no-gutters">
                         <div class="col-md-4 stretched-link">
@@ -166,6 +168,64 @@ function showLabels($blankcheckboxes, $auctst, $bnst)
                     <div class="card-footer"><p class="font-weight-bold"> Ending in: $endingformatted</p></div>
                 </div>
         EOT;
+            }
+            if ($type == "AuctionWithBIN") {
+                echo <<<"EOT"
+                <div id="productcard" class="card mb-3" style="max-width: 80%;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 stretched-link">
+                            <a href="$url" ><img style="width:80%;" src="$imgofitem" class="mx-auto card-img" alt="..."></a>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"> $title $badge <a onclick="trackItem($ebayID)"
+                                style="padding-left: 1rem;" href="#trackitem" class="card-link"><i id="unTrackedItem$ebayID" class="far fa-star"></i><i id="trackedItem$ebayID" style="display:none;" class="fas fa-star"></i></a> </h5>
+                                <p class="card-text">$itemdescription</p>
+                                <div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item font-weight-bold">Seller: $seller </li>
+                                    <li class="list-group-item font-weight-bold">Seller Score: $sellerscorebd </li>
+                                    <li class="list-group-item font-weight-bold">Auction Price: £<strong>$auctionprice</strong></li>
+                                    <li class="list-group-item font-weight-bold">Buy Now Price: £<strong>$buynowprice</strong></li>
+                                 </ul>
+                                </div>
+                                <a class="btn btn-primary" href="$url" role="button" target="_blank">More Info</a>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div style="padding:0.5rem;" id="trackitemnotification$ebayID"></div>
+                    <div class="card-footer"><p class="font-weight-bold"> Ending in: $endingformatted</p></div>
+                </div>
+        EOT;
+            }
+            if ($type == "FixedPrice") {
+                echo <<<"EOT"
+                <div id="productcard" class="card mb-3" style="max-width: 80%;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 stretched-link">
+                            <a href="$url" ><img style="width:80%;" src="$imgofitem" class="mx-auto card-img" alt="..."></a>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"> $title $badge <a onclick="trackItem($ebayID)"
+                                style="padding-left: 1rem;" href="#trackitem" class="card-link"><i id="unTrackedItem$ebayID" class="far fa-star"></i><i id="trackedItem$ebayID" style="display:none;" class="fas fa-star"></i></a> </h5>
+                                <p class="card-text">$itemdescription</p>
+                                <div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item font-weight-bold">Seller: $seller </li>
+                                    <li class="list-group-item font-weight-bold">Seller Score: $sellerscorebd </li>
+                                    <li class="list-group-item font-weight-bold">Buy Now Price: £<strong>$buynowprice</strong></li>
+                                 </ul>
+                                </div>
+                                <a class="btn btn-primary" href="$url" role="button" target="_blank">More Info</a>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div style="padding:0.5rem;" id="trackitemnotification$ebayID"></div>
+                    <div class="card-footer"><p class="font-weight-bold"></p></div>
+                </div>
+        EOT;
+            }
         }
     }
 }
