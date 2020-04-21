@@ -250,11 +250,11 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
                         }
                     </script>
 
-                    <h1 class="mt-4">Products you might like</h1>
+                    <!-- <h1 class="mt-4">Products you might like</h1> -->
                     <!-- <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol> -->
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="card-columns">
                             <div class="card">
                                 <img src="..." class="card-img-top" alt="...">
@@ -319,7 +319,7 @@ if (!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- 
                     <div class="row">
