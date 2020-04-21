@@ -80,8 +80,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $password_err = "Something went wrong. Please try again later.";
             print_r(sqlsrv_errors());
         } else {
-            header("location: login.php");
             sendMail($email);
+
+            $deploenv = getenv('APPSETTING_env');
+
+            if ($deploenv == "true") {
+                // echo "inside prod";
+                header("location: /dist/login.php");
+                exit();
+            } else {
+                // echo "inside else";
+                header("location: dist/login.php");
+                exit();
+            }
+            // header("location: login.php");
         }
 
         // Close statement
