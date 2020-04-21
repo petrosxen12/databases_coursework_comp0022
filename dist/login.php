@@ -84,7 +84,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["email"] = $email;
 
                     // Redirect user to welcome page
-                    header("location: ../index.php");
+
+                    $deploenv = getenv('APPSETTING_env');
+
+                    if ($deploenv == "true") {
+                        // echo "inside prod";
+                        // header("location: /dist/login.php");
+                        echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
+                        exit();
+                    } else {
+                        // echo "inside else";
+                        header("location: ../index.php");
+                        exit();
+                    }
+
+                    // header("location: ../index.php");
                     exit();
                 } else {
                     // Display an error message if password is not valid
